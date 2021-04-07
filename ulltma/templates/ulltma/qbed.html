@@ -1,0 +1,64 @@
+{% extends "ulltma/layout.html" %}
+
+{%load static mathfilters%}
+
+{%block body%}
+
+<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/qbed.css'%}">
+
+	<div class="container main">
+		<div class="progress">
+  			<div class="progress-bar bg-success" role="progressbar" style="width: {{progress}}%" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100">{{currpage}} / 20</div>
+		</div> <br>
+	
+
+		<form action="{%url 'test' currpage %}" method="POST">
+			{%csrf_token%}
+			<h2>Scenario {{item.scenarionum}}</h2>
+			<p>{{item.scenario}}</p>
+
+			<div class="container responses">
+				
+				<table class="table">
+					<thead class=".thead-light">
+						<th>Question</th>
+						<th>Often</th>
+						<th>Sometimes</th>
+						<th>Not Often</th>
+						<th>Never</th>
+					</thead>
+					<tbody class=".table-striped">
+						{%for ql in qlist%}
+						{%with i=forloop.counter0%}
+							<tr>
+								<td> {{ql}} </td>
+								<td> <input type="radio" name="freq_{{i}}" value="often"></td> 
+								<td> <input type="radio" name="freq_{{i}}" value="sometimes"></td>
+								<td> <input type="radio" name="freq_{{i}}" value="not often"> </td>
+								<td> <input type="radio" name="freq_{{i}}" value="never"> </td>
+							</tr>
+						{%endwith%}			
+						{%endfor%}
+					</tbody>
+				</table>
+			</div>
+			<div class="text-center">
+			{%if currpage > 1%}
+				<input type="button" onclick="window.location.href = '{% url 'test' currpage|sub:1 %}'" value="Previous"> 
+			{%endif%}
+
+			{%if currpage > 19%}
+				<input type="b" onclick="window.location.href = '{% url 'learnstylereport' %}'" value="Finish"> Finish </button>
+			{%else%}
+				<input type="button" onclick="window.location.href = '{% url 'test' currpage|add:1 %}'" value="Previous"> Next </button>	
+			{%endif%}			
+			</div>
+		</form><br>
+
+		
+	</div>
+
+<!--<script type="text/javascript" src="{%static 'ulltma/js/qbed.js'%}"></script>-->
+
+	
+{% endblock %}

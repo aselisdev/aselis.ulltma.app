@@ -1,0 +1,56 @@
+.main{
+	margin-top: 1%;
+	padding-top: 3%;
+	padding-left: 5%; 
+	padding-right: 5%;
+}
+
+#buttonset{
+	margin-top: 5%;
+}
+
+button{
+	background-color: white;
+	border: none;
+	border-radius: 7px;
+	transition: 0.15s;
+}
+
+.select p, h3{
+	color: black;
+}
+
+.select:hover h3{
+	color: #826e17;
+}
+
+
+
+#logo{
+	border-radius: 0%;
+}
+
+
+img{
+	border-radius: 50%;
+	border-color: white;
+	margin-bottom: 2%;
+}
+
+a{
+	color: white;
+}
+
+h1{
+	color: white;
+	font-weight: normal;
+}
+
+#fn{
+	color: orange;
+}
+
+#modalmsg{
+	font-size: 18px;
+	color: black;
+}

@@ -1,0 +1,39 @@
+{% extends "ulltma/layout.html" %}
+
+{%load static mathfilters%}
+
+{%block body%}
+
+<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/qbed.css'%}">
+
+	<div class="container main">
+		{%for a in assess%}
+			{%with i=forloop.counter0%}
+			{%load index%}
+				<div class="tab">
+					<form action="{%url 'ltestprop' %}" method="POST">
+						{%csrf_token%}
+						<h2> Situation {{a.scenarionum}} </h2>
+						<p> {{a.scenario}}<p>
+						<div class="container responses">
+							{%for ml in assessbed|index:i%}
+								{%with j=forloop.counter0|stringformat:"s"%}
+									<h4>{{ml}}
+									
+								{%endwith%}
+							{%endfor%}	
+						</div>
+						<div class = "text-center">
+							<button id = "previous" onclick="nextprev(-1)"> Previous </button>
+							<button id = "next" onclick="nextprev(1)"> Next </button>
+						</div>
+					</form>
+				</div>
+			{%endwith%}
+		{%endfor%}
+	</div>
+
+<script type="text/javascript" src="{%static 'ulltma/js/qbed.js'%}"></script>
+
+	
+{% endblock %}

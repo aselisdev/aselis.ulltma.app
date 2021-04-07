@@ -1,0 +1,17 @@
+.main{
+	margin-top: 1%;
+	padding-top: 3%;
+	padding-left: 5%; 
+	padding-right: 5%;
+}
+
+.upload{
+	margin-top: 1%;
+	padding-top: 3%;
+}
+
+input[type=submit], button{
+	color: #c1ab30;
+	font-size: 15px;
+	font-style: bold;
+}

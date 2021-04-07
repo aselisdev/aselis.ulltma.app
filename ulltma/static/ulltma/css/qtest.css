@@ -1,0 +1,105 @@
+body{
+	background-color: white;
+}
+
+.main{
+	margin-top: 2.5%;
+}
+
+#prog{
+	color: rgba(0, 0, 0, 0.5);
+	font-weight: bold;
+	font-size: 15px;
+}
+
+p, h2{
+	text-align: center;
+	color: black;
+}
+
+h3{
+	color: black;
+}
+
+p{
+	font-size: 30px; 
+	font-weight: bold;
+}
+
+
+.qhead{
+	background-color: white;
+	margin-bottom: 5%;
+	border-radius: 12.5px;
+	padding: 15px;
+	box-shadow: 5px 10px #888888;
+}
+
+
+#heads li{
+	display: inline-block;
+	font-weight: 600;
+
+}
+
+.radios{
+	margin-top:-3%;
+}
+
+.radios li{
+	display: inline-block;
+}
+
+
+h4{
+	color: purple;
+	font-weight: lighter;
+}
+
+input[type=button], button{
+	padding: 10px;
+	padding-left: 10%;
+	padding-right: 10%;
+	border-radius: 50px;
+	color: #826e17;
+	font-weight: bold;
+	font-size: 17.5px;
+	font-variant-caps: all-small-caps;
+
+}
+
+td {
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+}
+
+.tab{
+	display: none;
+}
+
+#qdata{
+	font-size: 20px;
+	font-weight: normal;
+}
+
+.heade{
+	font-size: 17px;
+}
+
+#next, #previous{
+	background-color: #f0bdfc;
+	color: white;
+}
+
+#finish{
+	background-color: #2c732f;
+	color: white;
+}
+
+.no-border{
+	border: 0;
+}
+
+.progress-bar, #progress{
+	border-radius: 50px;
+}

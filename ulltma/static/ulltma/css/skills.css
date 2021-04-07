@@ -1,0 +1,53 @@
+.main{
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 5%;
+	border-radius: 6px;
+	padding: 3%;
+}
+
+#resultsarea{
+	margin-top: 4%;
+}
+
+#resultsarea h1{
+	color: #826e17;
+	font-size: 30px;
+	margin-top: 2%;
+}
+
+#resultsarea a{
+	color: #c1ab30;
+}
+
+#resultsarea a:hover{
+	text-decoration: underline;
+}
+
+#resultsarea h2{
+	font-weight: lighter;
+	font-kerning: auto;
+	font-size: 25px;
+	color: white;
+	font-variant-caps: small-caps;
+	margin-top: -0.25%;
+}
+
+#resultsarea p{
+	color: white;
+	font-style: italic;
+	margin-top: -1%;
+}
+
+#searchbar{
+	margin-left: 20%;
+}
+
+input[type=text]{
+	width: 50%;
+}
+
+#msg p{
+	margin-left: -10%;
+	margin-top: 4%;
+}

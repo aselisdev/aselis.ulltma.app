@@ -1,0 +1,25 @@
+{% extends "ulltma/layout.html" %}
+
+{%load static%}
+
+{%block body%}
+
+<link rel="stylesheet" type="text/css" href="{% static 'ulltma/css/ltprep.css '%}">
+
+	<div class="container main">
+		<div class="text-center">
+			<img src="{%static 'ulltma/images/ulltmalogo.png'%}" width="150" height="150">
+		</div>
+		<br>
+		<br>
+		<h2>To start using ULLTMA, we need to figure out your learning style.</h2>
+		<p>Please answer the following questions, and we'll let you know what types of learning tools are best for you!</p>
+		<br><br>
+
+		<div class="text-center">
+			<button id = "cont" class="btn-light no-border" onclick="window.location.href='{% url 'ltestprop' %}' "> CONTINUE </button>
+		</div>
+		
+	</div>
+
+{% endblock %}

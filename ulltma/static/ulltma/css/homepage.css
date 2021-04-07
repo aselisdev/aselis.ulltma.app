@@ -1,0 +1,84 @@
+.main {
+	margin-top: 7.5%;
+}
+
+#description{
+	margin-top: -7.5%;
+	padding-right: 1%;
+	text-align: center;
+	font-size: 30px;
+}
+
+#credentials{
+	margin-top: -5%;
+
+}
+
+#credentials span{
+	color: white;
+	font-size: 20px;
+}
+
+#signin{
+	margin-left: 25%;
+	margin-right: 25%;
+}
+
+#textbox{
+	border-radius: 20px;
+	background-color: white;
+}
+
+.no-border{
+	border: 0;
+}
+
+input[type=text], input[type=password]{
+	width: 30%;
+	border-radius: 4px;
+	padding: 5px;
+	font-size: 17.5px;
+}
+
+
+input[type=button], input[type=submit]{
+	padding: 5px;
+	width: 55%;
+	font-weight: bold;
+	border-radius: 50px;
+	font-size: 15px;
+}
+
+#app_title{
+	margin-top: -2%;
+	color: white;
+}
+
+#app_desc{
+	color: white;
+	font-size: 15px;
+}
+
+#sign_in_desc{
+	color: white;
+	font-size: 14px;
+	margin-top: -1.5%;
+}
+
+#lgin{
+	background-color: #a89932;
+	color: white;
+}
+
+#sgin{
+	color:#a89932;
+}
+
+span{
+	font-size: 15px;
+}
+
+#modalmsg{
+	font-size: 18px;
+	color: black;
+}

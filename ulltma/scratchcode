@@ -1,0 +1,165 @@
+if request.method == "POST":
+		a = 0
+		b = 4 * assess.count()
+		while a < b:
+			loc = "freq_" + str(a)
+			answerlist.append(request.POST[loc])
+			a += 1
+
+		a = 0
+		b = 4 * assess.count()
+		while a < b:
+			if currbed[a] in visualbed and answerlist[a] == "often":
+				visualscore += 3
+			elif currbed[a] in readingbed and answerlist[a] == "often":
+				readingscore += 3
+			elif currbed[a] in auditorybed and answerlist[a] == "often":
+				auditoryscore += 3
+			elif currbed[a] in kinestheticbed and answerlist[a] == "often":
+				kinestheticscore += 3
+			a+=1
+
+		sumtotal = visualscore + auditoryscore + kinestheticscore + readingscore
+
+		learnstyle = LearningStyle.objects.get(user=request.user)
+		learnstyle.visualscore = (visualscore / sumtotal) * 100
+		learnstyle.auditoryscore = (auditoryscore / sumtotal) * 100
+		learnstyle.readingscore = (readingscore / sumtotal) * 100
+		learnstyle.kinestheticscore = (kinestheticscore / sumtotal) * 100
+		learnstyle.save()
+		
+		if learnstyle.visualscore >= 40:
+			learnstyle.style = "VISUAL"
+		elif learnstyle.auditoryscore >= 40:
+			learnstyle.style = "AUDITORY"
+		elif learnstyle.readingscore >= 40:
+			learnstyle.style = "READING / WRITING"
+		elif learnstyle.kinestheticscore >= 40:
+			learnstyle.style = "KINESTHETIC"
+		else:
+			learnstyle.style = "MULTIMODAL"
+		learnstyle.save()
+		
+		return HttpResponseRedirect(reverse("learnstylereport"))
+
+
+
+---------------------------------------------------------------------------------------------------------
+
+
+		<form action="{%url 'ltestprop' %}" id="lassess" method="POST">
+			{%csrf_token%}
+			{%for a in assess%}
+				{%with i=forloop.counter0%}
+					{%load index%}
+					<div class="tab">
+						<h2> Situation {{a.scenarionum}} </h2>
+						<p> {{a.scenario}}<p>
+						<div class="container responses">
+							<table class="table">
+								<thead class=".thead-light">
+									<th>Question</th>
+									<th>Often</th>
+									<th>Sometimes</th>
+									<th>Not Often</th>
+									<th>Never</th>
+								</thead>
+								<tbody class=".table-striped">
+								{%for ml in assessbed|index:i%}
+									{%with j=forloop.counter0%}
+										<tr>
+											<td> {{ml}} </td>
+											<td> <input type="radio" name="freq_{{i |mul:4 |add:j}}" value="often"></td> 
+											<td> <input type="radio" name="freq_{{i |mul:4 |add:j}}" value="sometimes"></td>
+											<td> <input type="radio" name="freq_{{i |mul:4 |add:j}}" value="not often"> </td>
+											<td> <input type="radio" name="freq_{{i |mul:4 |add:j}}" value="never"> </td>
+										</tr>
+									{%endwith%}
+								{%endfor%}
+								</tbody>
+							</table>	
+						</div>
+						<!--<div class = "text-center">
+							<button id = "previous" onclick="nextprev(-1)"> Previous </button>
+							<button id = "next" onclick="nextprev(1)"> Next </button>
+						</div>-->				
+					</div>
+				{%endwith%}
+			{%endfor%}
+			<div class="text-center">
+				<input type="submit" name="">
+			</div>
+		</form>
+
+---------------------------------------------------------------------------------------
+
+
+		a = 0
+		b = 4 * assess.count()
+		while a < b:
+			if currbed[a] in visualbed and answerlist[a] == "often":
+				visualscore += 3
+			elif currbed[a] in readingbed and answerlist[a] == "often":
+				readingscore += 3
+			elif currbed[a] in auditorybed and answerlist[a] == "often":
+				auditoryscore += 3
+			elif currbed[a] in kinestheticbed and answerlist[a] == "often":
+				kinestheticscore += 3
+			a+=1
+
+		sumtotal = visualscore + auditoryscore + kinestheticscore + readingscore
+
+		print(f"{visualscore}, {auditoryscore}, {readingscore}, {kinestheticscore}, {sumtotal}")
+
+		learnstyle = LearningStyle.objects.get(user=request.user)
+		learnstyle.visualscore = (visualscore / sumtotal) * 100
+		learnstyle.auditoryscore = (auditoryscore / sumtotal) * 100
+		learnstyle.readingscore = (readingscore / sumtotal) * 100
+		learnstyle.kinestheticscore = (kinestheticscore / sumtotal) * 100
+		learnstyle.save()
+		
+		if learnstyle.visualscore >= 40:
+			learnstyle.style = "VISUAL"
+		elif learnstyle.auditoryscore >= 40:
+			learnstyle.style = "AUDITORY"
+		elif learnstyle.readingscore >= 40:
+			learnstyle.style = "READING / WRITING"
+		elif learnstyle.kinestheticscore >= 40:
+			learnstyle.style = "KINESTHETIC"
+		else:
+			learnstyle.style = "MULTIMODAL"
+		learnstyle.save()
+		
+		return HttpResponseRedirect(reverse("learnstylereport"))
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<!--<form action="{%url 'test' currpage%}" method="POST">
+			{%csrf_token%}
+			<h2> Situation {{assess.scenarionum}} </h2>
+			<p> {{assess.scenario}}<p>
+			{%load index%}
+			<div class="container responses">
+				<table class="table">
+					<thead class=".thead-light">
+						<th>Question</th>
+						<th>Often</th>
+						<th>Sometimes</th>
+						<th>Not Often</th>
+						<th>Never</th>
+					</thead>
+					<tbody class=".table-striped">
+						{%for ml in masterlist|index:i%}
+							<tr>
+								<td> {{ml}} </td>
+								<td> <input type="radio" name="freq_{{i}}" value="often"></td> 
+								<td> <input type="radio" name="freq_{{i}}" value="sometimes"></td>
+								<td> <input type="radio" name="freq_{{i}}" value="not often"> </td>
+								<td> <input type="radio" name="freq_{{i}}" value="never"> </td>
+							</tr>			
+						{%endfor%}
+					</tbody>
+				</table>	
+			</div>
+		</form>-->

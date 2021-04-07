@@ -1,0 +1,44 @@
+body{
+	background-color: white;
+}
+
+.main{
+	margin: 2.5% 5% 5% 10%;
+	border-radius: 6px;
+	padding: 2%;
+}
+
+h2{
+	color:#26123d;
+	text-align: center;
+}
+
+p{
+	text-align: center;
+	color: black;
+}
+
+.img{
+	margin-top: -5%;
+}
+
+.btn-light{
+	padding: 10px;
+	padding-left: 10%;
+	padding-right: 10%;
+	background-color: #563463;
+	color: white;
+	font-size: 20px;
+	border-radius: 50px;
+	font-variant-caps: all-small-caps;
+	font-weight: bold;
+}
+
+.no-border{
+	border: 0;
+}
+
+h3{
+	color: #ad8dba;
+	font-size:20px;
+}

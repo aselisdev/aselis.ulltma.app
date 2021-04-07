@@ -1,0 +1,52 @@
+{% extends "ulltma/layout.html" %}
+
+{% load static %}
+
+{%block body%}
+
+<link rel="stylesheet" type="text/css" href="{% static 'ulltma/css/signinp1.css' %}">
+
+	<div class="container-fluid main">
+		<form action="{% url 'signin' %}" method="POST">
+			{% csrf_token %}
+			<div class="row">
+				<div class = "col-sm-5 col-md-5 col-lg-5 col-xl-5 slots">
+					<h3> Personal Info </h3>
+
+					{%if message%}
+						<div><p>{{message}}</p></div>
+					{%endif%}
+
+					<span> First Name </span><br>
+					<input type="text" name="firstname"> <br><br>
+
+					<span> Last Name </span><br>
+					<input type="text" name="lastname"> <br><br>
+
+					<span> Email </span><br>
+					<input type="text" name="email"> <br><br>
+
+					<span> Password </span><br>
+					<input type="password" name="password"> <br><br>
+
+					<span> Confirm Password </span><br>
+					<input type="password" name="pconfirm"> <br><br>
+				</div>
+
+				<div class = "col-sm-5 col-md-5 col-lg-5 col-xl-5 confirm">
+					<h3> Fill in the necessary details on the left. Once you're done, click below to find out your Learning Style! </h3>
+
+					<br> <br>
+
+					<div class="row">
+						<div class = "col-sm-4 col-md-4 col-lg-4 col-xl-4"></div>
+						<div class = "col-sm-4 col-md-4 col-lg-4 col-xl-4">
+							<input type="submit" value="Start Learning Test">
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+{% endblock %}

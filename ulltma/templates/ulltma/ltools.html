@@ -1,0 +1,61 @@
+{% extends "ulltma/loggedin.html" %}
+
+{%load static%}
+
+{% block body%}
+
+
+<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/ltools.css'%}">
+
+<div class="container main">
+	<h2> Learning Tools </h2>
+
+	<p> Below is a list of tools that best matches your learning style. Click on either of the links, and when you're ready, see what you've learned, and click on "Ready to Test".</p>
+
+	{% if t.modality == 'V' %}
+		<h3>Learning tools for Visual Learners</h3>
+	{% elif t.modality == 'A' %}
+		<h3>Learning tools for Auditory Learners</h3>
+	{% elif t.modality == 'R' %}
+		<h3>Learning tools for Reading/Writing Learners</h3>
+	{% elif t.modality == 'K' %}
+		<h3>Learning tools for Kinesthetic Learners</h3>
+	{% else %}
+		<h3>Learning tools for Multimodal Learners</h3>
+	{% endif %}
+
+	{%for t in tools%}
+		{%with i=forloop.counter%}
+		<!--<h3><a data-toggle="modal" href="#ltool_{{i}}">{{t.title}} -- {{t.modality}}</a></h3>
+
+		<div class="modal fade" id = "ltool_{{i}}" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+          				<h4>{{t.title}}</h4>
+          				<button type="button" class="close" data-dismiss="modal">&times;</button>
+        			</div>
+        			<div class="modal-body">
+        				<iframe src="{{t.url}}" sandbox="allow-same-origin" width="1000" height="500"></iframe>
+        			</div>
+				</div>
+			</div>
+		</div>-->
+		{%csrf_token%}
+		<h3><a target="_self" id="link_{{i}}" onclick="showhref({{i}}, '{{keyword}}');" href="{{t.url}}">{{t.title}} -- {{t.modality}}{{i}}</a></h3>
+
+		{%endwith%}
+	{%empty%}
+		<p><i>There are no tools to display.</i></p>
+	{%endfor%}
+
+
+	<br><br>
+	<div class="text-center">
+			<button class = "btn-light no-border" onclick="window.location.href='{% url 'posttest' keyword%}' ">Ready to Test!</button>
+	</div>
+
+</div>
+
+<script type="text/javascript" src="{%static 'ulltma/js/ltools.js'%}"></script>
+{% endblock %}

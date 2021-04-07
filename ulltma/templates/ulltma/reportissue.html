@@ -1,0 +1,22 @@
+{% extends "ulltma/loggedin.html" %}
+
+{%load static%}
+
+{%block body%}
+
+<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/reportissue.css'%}">
+
+<div class="container main">
+	<h1>Report an Issue</h1>
+
+	<p>Got any problems with the app? Write them down here!</p>
+	<form id="issue" action="{% url 'reportissue' %}" method="POST">
+		{%csrf_token%}
+		<input type="text" name="shortdesc" placeholder="Short Description">
+		<textarea id="longdesc" name="longdesc">Enter issue details here.</textarea>
+		<input type="submit" name="submit" value="Submit">
+	</form>
+	
+</div>
+
+{% endblock %}

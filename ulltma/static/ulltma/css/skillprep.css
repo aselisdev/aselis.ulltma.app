@@ -1,0 +1,50 @@
+.main{
+	margin: 3% 5% 5% 10%;
+	padding: 2%;
+}
+
+img{
+	margin-bottom: 10px;
+}
+
+h2{
+	color: white; 
+	font-size: 30px;
+	text-align: center;
+}
+
+h3{
+	color: white; 
+	font-size: 25px;
+	text-align: center;
+}
+
+p{
+	color: white;
+	font-size: 20px;
+	text-align: center;
+}
+
+.row{
+	margin-left: 7.5%;
+	margin-top: 3%;
+}
+
+.btn-light{
+	padding: 10px;
+	background-color:  #826e17;
+	color: white;
+	font-variant-caps: all-small-caps;
+	font-size: 20px;
+	border-radius: 50px;
+	font-weight: bolder;
+}
+
+.no-border{
+	border: 0;
+}
+
+a{
+	color: white;
+	text-decoration: underline;
+}

@@ -1,0 +1,47 @@
+{% extends "ulltma/loggedin.html" %}
+
+{% load static mathfilters%}
+
+{% block body%}
+
+<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/prepostest.css'%}">
+
+<div class="container main">
+	<h2> Post-Assessment </h2>
+
+	<form id="prepost" action="{%url 'posttest' keyword%}" method="POST">
+		{%csrf_token%}
+		{%for q in questions%}
+		{%with i=forloop.counter%}
+			<div class="tab">
+				<div class="progress">
+					<div class="progress-bar bg-success" id="pgbar" role="progressbar" style="width:{{i|div:3|mul:100}}%;" aria-valuenow="{{i|div:3|mul:100}}" aria-valuemin="0" aria-valuemax="100"></div>
+				</div>
+				<p id="prog">{{i}} of 3</p>
+				<br>
+				<br>
+				<h2 id="qproper">{{q.question}}</h2>
+				<br>
+				{%if q.imgurl != "N/A"%}
+					<div class="text-center">
+						<img src="{{q.imgurl}}" width="200px" height="200px">
+					</div>
+				{%endif%}
+				<br>
+					<div class="text-center">
+						<input type="text" name="question_{{i}}" placeholder="Enter your answer here."> <br>
+					</div>
+				<br>
+				<br>
+				<div class="text-center">
+					<input type="button" id="previous" onclick="nextprev(-1)" value="Previous">
+					<input type="button" id="next" onclick="nextprev(1)" value="Next">
+				</div>	
+			</div>
+		{%endwith%}
+		{% endfor %}
+	</form>
+</div>
+
+<script type="text/javascript" src="{%static 'ulltma/js/prepostest.js'%}"></script>
+{% endblock %}

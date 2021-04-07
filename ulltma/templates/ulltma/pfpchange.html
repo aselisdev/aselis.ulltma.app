@@ -1,0 +1,30 @@
+{% extends "ulltma/loggedin.html" %}
+
+{%load static%}
+
+{% block body%}
+
+<link rel="stylesheet" type="text/css"href="{%static 'ulltma/css/pfpchange.css' %}">
+
+<div class="container-fluid main">
+	<div class="current text-center">
+		<h2> Current Profile Picture</h2>
+		<img src="{{pfp.pfp.url}}" width="150" height="150"><br>
+		{%if message%}
+			<p>{{message}}</p>
+		{%endif%}
+	</div>
+	<div class="upload text-center">
+		<form name = "upload" action="{% url 'pfpchange' %}" method="POST" enctype="multipart/form-data">
+			{%csrf_token%}
+			{{form.as_p}}
+			<input type="submit" name="">
+		</form>
+
+		<button onclick="window.location.href='{%url 'dashboard' %}'"> Go Back </button>
+	</div>
+</div>
+
+
+
+{% endblock %}

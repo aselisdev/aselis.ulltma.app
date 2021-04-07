@@ -1,0 +1,16 @@
+{% load static %}
+
+<html>
+<head>
+	<title>ULLTMA, the Universal Learner-Learning Tool Matchmaker App</title>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'ulltma/css/searchstyle.css' %}">
+</head>
+<body>
+	<p> Navbar goes here </p> <button onclick="window.location.href='{% url 'dashboard' %}' "> Home </button> <button onclick="window.location.href='{% url 'index' %}' "> Log Out </button>
+
+	{% block body %}
+
+	{% endblock %}
+</body>
+</html>

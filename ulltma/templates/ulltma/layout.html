@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ULLTMA, the Universal Learner-Learning Tool Matchmaker App</title>
+	<link rel="shortcut icon" href="{%static 'ulltma/images/favicon.ico'%}">
+	<!-- bootstrap-->
+	<link rel="stylesheet" type="text/css" href="{% static 'ulltma/node_modules/bootstrap/dist/css/bootstrap.min.css' %}">
+	<script type="text/javascript" src="{% static 'ulltma/node_modules/jquery/dist/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'ulltma/node_modules/popper.js/dist/umd/popper.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'ulltma/node_modules/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+	<!--other CSS styling-->
+	<link rel="stylesheet" type="text/css" href="{% static 'ulltma/css/basestyle.css' %}">
+
+</head>
+<body>
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand"><img src="{%static 'ulltma/images/aselis_logo.png' %}" height="50px" width="150px"></a>
+			</div>
+		</div>
+	</nav>
+	{% block body %}
+
+	{% endblock %}
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "ulltma/loggedin.html" %}
+
+{% load static%}
+
+{% block body%}
+
+<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/skillprep.css'%}">
+
+<div class="container main text-center">
+	<img src="{%static 'ulltma/images/ulltmalogo.png'%}" width="200" height="200"><br>
+	<h2>Pre-Assessment</h2>
+	<h3>{{name}}</h3>
+	<br>
+	<p> To see how much you know about this topic, please answer the following questions.</p>
+	<br>
+	<button class = "btn-light no-border" onclick="window.location.href='{% url 'pretest' keyword%}' "> Click to begin </button>
+	<br>
+	<p> To skip the Pre-Assessment and go to the Learning Tools page, click <a href="{% url 'ltools' keyword%}">here</a>.</p>
+	
+	
+</div>
+{% endblock %}

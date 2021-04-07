@@ -1,0 +1,14 @@
+.main{
+	margin-top: 10%;
+}
+
+form{
+	margin-left: 35%;
+}
+
+input[type=button], input[type=submit]{
+	padding: 10px;
+	color: purple;
+	font-size: 20px;
+	border-radius: 5px;
+}

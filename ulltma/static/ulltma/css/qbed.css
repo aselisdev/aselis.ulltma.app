@@ -1,0 +1,38 @@
+.main{
+	margin-top: 2.5%;
+}
+
+p, h2{
+	text-align: center;
+}
+
+p{
+	font-size: 20px; 
+	font-weight: bold;
+	font-style: italic;
+}
+
+.responses{
+	background-color: white;
+	border-radius: 12.5px;
+	padding: 15px;
+}
+
+h4{
+	color: purple;
+	font-weight: lighter;
+}
+
+input[type=button], button{
+	padding: 10px;
+	border-radius: 3px;
+	color: purple;
+	font-weight: bold;
+	font-size: 20px;
+
+}
+
+.tab{
+	display: none;
+}
+

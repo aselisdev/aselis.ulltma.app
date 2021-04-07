@@ -1,0 +1,36 @@
+{% extends "ulltma/loggedin.html" %}
+
+{%load static%}
+
+{% block body%}
+
+<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/skills.css'%} ">
+<div class="container main">
+	<div id="searchbar">
+		<form action="{%url 'skillsearch'%}" method="POST">
+			{%csrf_token%}
+			<input type="text" name="searchtext">
+			<input type="submit" value="Search">
+		</form>
+	</div>
+
+	<div id = "resultsarea">	
+		{%for sb, tp in subtopics.items%}
+			<h1>{{sb}}</h1>
+			{%for t in tp%}
+				<h2>{{t}}</h2>
+				{%for sk in skills%}
+					{%if sk.topic == t%}
+						<p><a href="{%url 'skillprep' sk.keyword%}">{{sk.skill}}</a></p>
+					{%endif%}
+				{%endfor%}
+			{%endfor%}
+		{%empty%}
+			<div class="text-center">
+				<p>Sorry! No results to display.</p>
+			</div>
+		{%endfor%}
+
+	</div>
+</div>
+{% endblock %}

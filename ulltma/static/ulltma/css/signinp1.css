@@ -1,0 +1,31 @@
+.main{
+	margin-top: 15%;
+}
+
+.slots{
+	margin-top: -5%;
+	padding-left: 10%;
+}
+
+input[type=text], input[type=password]{
+	width: 60%;
+}
+
+span{
+	color: white;
+	font-size: 20px;
+}
+
+.confirm h3{
+	text-align: center;
+}
+
+input[type=button]{
+	width: 105%;
+	align-self: center;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 20px;
+	font-weight: bold;
+
+}

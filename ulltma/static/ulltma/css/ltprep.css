@@ -1,0 +1,40 @@
+.main{
+	margin-top: 12.5%;
+}
+
+h2{
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	color: white;
+}
+
+p {
+	text-align: center;
+	font-size: 15px;
+	color:white;
+}
+
+.no-border{
+	border: 0;
+}
+
+#cont {
+	border-radius: 50px;
+	background-color: #a88693;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+
+	margin-left: -2.5%;
+	margin-right: -2.5%;
+
+	padding-left: 1%;
+	padding-right: 1%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+
+	
+
+
+}
