@@ -4,13 +4,14 @@
 
 {% block body%}
 
-<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/skills.css'%} ">
+<link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{%static 'ulltma/css/skills.css'%} ">
+<link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{%static 'ulltma/css/skills-mobile.css'%} ">
 
 <div class="container main">
 	<div id="searchbar">
 		<form action="{% url 'reportsearch' %}" method="POST">
-			<input type="text" name="searchtext">
-			<input type="button" value="Search">
+			<input type="text" class="no-border" name="searchtext">
+			<input type="button" class="no-border" value="Search">
 		</form>
 	</div>
 

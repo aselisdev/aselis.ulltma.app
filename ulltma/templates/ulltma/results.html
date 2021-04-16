@@ -4,7 +4,8 @@
 
 {% block body%}
 
-<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/results.css'%}">
+<link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{%static 'ulltma/css/results.css'%}">
+<link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{%static 'ulltma/css/results-mobile.css'%}">
 
 <div class="container main text-center">
 	<h2>REPORT FOR {{fname}}</h2>

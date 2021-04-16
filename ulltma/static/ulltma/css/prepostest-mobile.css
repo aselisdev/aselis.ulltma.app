@@ -1,0 +1,67 @@
+body{
+	background-color: white;
+}
+
+.main{
+	margin: 2.5% 0% 5%;
+}
+
+#prepost{
+	margin-top: -6%;
+}
+
+.tab{
+	margin-top: 5%;
+	background-color: white;
+	border-radius: 6px;
+	padding: 2%;
+	display: none;
+}
+
+.tab h2{
+	color:#26123d;
+}
+
+.tab p{
+	color: black;
+	font-style: italic;
+	text-align: center;
+}
+
+#prog{
+	color: rgba(0, 0, 0, 0.5);
+	font-weight: bold;
+}
+
+h2{
+	text-align: center;
+	color: black;
+	font-size: 25px;
+}
+
+#qproper{
+	text-align: center;
+	color: black;
+	font-weight: normal;
+}
+
+.no-border{
+	border: 0;
+}
+
+input[type=button]{
+	padding: 10px;
+	padding-left: 12%;
+	padding-right: 12%;
+	background-color:#826e17;
+	color: white;
+	font-size: 20px;
+	font-variant-caps: all-small-caps;
+	border-radius: 50px;
+	font-weight: bolder;
+}
+
+#choices{
+	margin: 0% 5% 0% 5%;
+	font-size: 20px;
+}

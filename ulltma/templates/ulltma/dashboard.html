@@ -4,7 +4,8 @@
 
 {% block body%}
 
-<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/dashboard.css' %}">
+<link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{%static 'ulltma/css/dashboard.css' %}">
+<link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{%static 'ulltma/css/dashboard-mobile.css' %}">
 
 <div class="container-fluid main">
 	<div class="modal fade" id="alert" tabindex="-1" role="dialog" aria-labelledby="alertPopup">
@@ -36,14 +37,14 @@
 	</div>
 
 	<div class="row text-center" id = "buttonset">
-		<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+		<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 			<button class="select" onclick="window.location.href='{% url 'skillsearch' %}' ">
 				<img src="{%static 'ulltma/images/skill.png'%}" width="75px" height="75px">
 				<br> <br>
 			 	<h3>Skill/Concept</h3> 
 			</button> 
 		</div>
-		<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+		<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 			<button class="select" onclick="window.location.href='{% url 'reportsearch' %}' ">
 				<img src="{%static 'ulltma/images/reports.png'%}" width="75px" height="75px">
 				<br> <br>

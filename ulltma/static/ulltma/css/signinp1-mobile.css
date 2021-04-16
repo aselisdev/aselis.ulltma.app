@@ -17,15 +17,16 @@ span{
 }
 
 .confirm h3{
+	margin-top: 5%;
 	text-align: center;
 }
 
-#smallscreen{
+#bigscreen{
  	display: none;
 }
 
 input[type=submit]{
-	width: 90%;
+	width: 99%;
 	align-self: center;
 	padding: 5px;
 	border-radius: 15px;

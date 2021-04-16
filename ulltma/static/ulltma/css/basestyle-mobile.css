@@ -1,0 +1,23 @@
+body{
+	background-color: #1f013d;
+}
+
+p, h1, h2{
+	color: #d3a13b;
+}
+
+h3, h4{
+	color: #d3a13b;
+}
+
+input[type=radio]{
+	color: white;
+}
+
+.nlink:hover{
+	text-decoration: underline;
+}
+
+.navbar{
+	height: 70px;
+}

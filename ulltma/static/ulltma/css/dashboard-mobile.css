@@ -27,6 +27,7 @@ button{
 .select p, h3{
 	color: black;
 	font-variant-caps: all-small-caps;
+	font-size: 1em;
 }
 
 .select:hover h3{

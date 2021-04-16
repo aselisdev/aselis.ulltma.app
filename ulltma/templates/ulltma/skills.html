@@ -4,27 +4,33 @@
 
 {% block body%}
 
-<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/skills.css'%} ">
+<link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{%static 'ulltma/css/skills.css'%} ">
+<link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{%static 'ulltma/css/skills-mobile.css'%} ">
+
 <div class="container main">
 	<div id="searchbar">
 		<form action="{%url 'skillsearch'%}" method="POST">
 			{%csrf_token%}
-			<input type="text" name="searchtext">
-			<input type="submit" value="Search">
+			<input type="text" class="no-border" name="searchtext">
+			<input type="submit" class="no-border" value="Search">
 		</form>
 	</div>
 
 	<div id = "resultsarea">	
 		{%for sb, tp in subtopics.items%}
-			<h1>{{sb}}</h1>
-			{%for t in tp%}
-				<h2>{{t}}</h2>
-				{%for sk in skills%}
-					{%if sk.topic == t%}
-						<p><a href="{%url 'skillprep' sk.keyword%}">{{sk.skill}}</a></p>
-					{%endif%}
+			<div id="searchcontainer">
+				<h1>{{sb}}</h1>
+				<div class="gradient">
+				</div>
+				{%for t in tp%}
+					<h2>{{t}}</h2>
+					{%for sk in skills%}
+						{%if sk.topic == t%}
+							<p><a href="{%url 'skillprep' sk.keyword%}">{{sk.skill}}</a></p>
+						{%endif%}
+					{%endfor%}
 				{%endfor%}
-			{%endfor%}
+			</div>
 		{%empty%}
 			<div class="text-center">
 				<p>Sorry! No results to display.</p>

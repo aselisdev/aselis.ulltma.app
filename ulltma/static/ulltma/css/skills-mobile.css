@@ -1,5 +1,4 @@
 .main{
-	margin-left: 15%;
 	margin-right: 20%;
 	margin-top: 5%;
 	border-radius: 6px;
@@ -16,12 +15,17 @@
 	margin-top: 2%;
 }
 
+#resultsarea #searchcontainer{
+	padding-top: 3%;
+	padding-bottom: 3%;
+}
+
 #resultsarea a{
 	color: #c1ab30;
 }
 
 #resultsarea .gradient{
-	margin-top: -0.75%; 
+	margin-top: -3%; 
 	height: 3px;
 	background-image: linear-gradient(to right, rgba(251,216,8,1), rgba(251,216,8,0));
 }
@@ -36,13 +40,13 @@
 	font-size: 25px;
 	color: white;
 	font-variant-caps: small-caps;
-	margin-top: -0.25%;
+	margin-top: 1%;
 }
 
 #resultsarea p{
 	color: white;
 	font-style: italic;
-	margin-top: -1%;
+	margin-top: -3%;
 }
 
 #searchbar{
@@ -54,13 +58,14 @@ input[type=text]{
 	border-radius: 50px;
 }
 
-input[type=button], input[type=submit]{
+input[type=button]{
 	border-radius: 50px;
 }
 
 .no-border{
 	border: 0;
 }
+
 
 #msg p{
 	margin-left: -10%;

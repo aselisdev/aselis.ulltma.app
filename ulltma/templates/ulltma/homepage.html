@@ -4,10 +4,11 @@
 
 {%block body%}
 
-<link rel="stylesheet" type="text/css" href="{% static 'ulltma/css/homepage.css' %}">
+<link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{% static 'ulltma/css/homepage.css' %}">
+<link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{% static 'ulltma/css/homepage-mobile.css' %}">
 
 
-<div class="container main">
+<div class="container-fluid main">
 	<div class="text-center" id="description">
 		<img src="{%static 'ulltma/images/ulltmalogo.png'%}" width="150" height="150">
 		<br>
@@ -20,15 +21,15 @@
 		<p id="sign_in_desc"> Enter your log-in details to access your account.</p>
 		<form id="signin" action="{% url 'login' %}" method="POST">
 			{% csrf_token %}
-			<div id = "textbox">
+			<div class="form-group" id = "textbox">
 				<img src="{%static 'ulltma/images/email.png'%}" width="25" height="25"><input type="text" class="no-border" name="email" placeholder="Email"><br>
 				<img src="{%static 'ulltma/images/password.png'%}" width="25" height="25"><input type="password" class="no-border" name="password" placeholder="Password">
 			</div>
-			<div class="row text-center">
-				<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+			<div class="row">
+				<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 					<input type="submit" id="lgin" value = "Log in"> 
 				</div>
-				<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+				<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 					<input type="button" id="sgin" onclick = "window.location.href = '{% url 'signin' %}'" value = "Sign Up">  
 				</div>
 			</div>

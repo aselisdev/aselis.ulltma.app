@@ -1,0 +1,36 @@
+.main{
+	margin: 5% 0% 5% 0%;
+	background-color: white;
+	border-radius: 6px;
+	padding: 5%;
+}
+
+h2{
+	color: #26123d;
+	text-align: center;
+}
+
+p{
+	text-align: center;
+	color: black;
+}
+
+h3{
+	color: #26123d;
+	font-size: 18px;
+}
+
+.btn-light{
+	padding: 10px;
+	padding-left: 12%;
+	padding-right: 12%;
+	background-color:#826e17;
+	color: white;
+	font-size: 20px;
+	border-radius: 50px;
+	font-weight: bold;
+}
+
+.no-border{
+	border: 0;
+}

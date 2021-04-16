@@ -4,7 +4,8 @@
 
 {%block body%}
 
-<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/qtest.css'%}">
+<link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{%static 'ulltma/css/qtest.css'%}">
+<link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{%static 'ulltma/css/qtest.css'%}">
 
 	<div class="container main">
 		<h3 class="text-center"> Learning Style Assessment</h3>
@@ -50,32 +51,32 @@
 										<p id ="qdata"> {{ml}}</p>
 										<ul id = "heads" class="text-center">
 											<div class="row">
-												<div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
+												<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
 													<li>Often</li>
 												</div>
-												<div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
+												<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
 													<li>Sometimes</li>
 												</div>
-												<div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
+												<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
 													<li>Not Often</li>
 												</div>
-												<div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
+												<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
 													<li>Never</li>
 												</div>
 											</div>
 										</ul><br>
 										<ul class = "radios">
 											<div class="row">
-												<div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
+												<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
 													<li><input type="radio" name="freq_{{i |mul:4 |add:j}}" value="often"></li>
 												</div>
-												<div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
+												<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
 													<li><input type="radio" name="freq_{{i |mul:4 |add:j}}" value="sometimes"></li>
 												</div>
-												<div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
+												<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
 													<li><input type="radio" name="freq_{{i |mul:4 |add:j}}" value="not often"></li>
 												</div>
-												<div class="col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
+												<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center">
 													<li><input type="radio" name="freq_{{i |mul:4 |add:j}}" value="never"></li>
 												</div>
 											</div>

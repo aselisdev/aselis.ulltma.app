@@ -1,5 +1,5 @@
 .main {
-	margin-top: 10.5%;
+	margin-top: 13.5%;
 	max-width: 100%;
 	height: auto;
 }
@@ -8,12 +8,11 @@
 	margin-top: -7.5%;
 	padding-right: 1%;
 	text-align: center;
-	font-size: 30px;
+	font-size: 2em;
 }
 
 #credentials{
 	margin-top: -5%;
-
 }
 
 #credentials span{
@@ -22,8 +21,8 @@
 }
 
 #signin{
-	margin-left: 25%;
-	margin-right: 25%;
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
 #textbox{
@@ -36,7 +35,7 @@
 }
 
 input[type=text], input[type=password]{
-	width: 50%;
+	width: 70%;
 	border-radius: 4px;
 	padding: 5px;
 	font-size: 17.5px;
@@ -58,13 +57,13 @@ input[type=button], input[type=submit]{
 
 #app_desc{
 	color: white;
-	font-size: 15px;
+	font-size: 0.8em;
 }
 
 #sign_in_desc{
 	color: white;
 	font-size: 14px;
-	margin-top: -1%;
+	margin-top: -1.5%;
 }
 
 #lgin{
