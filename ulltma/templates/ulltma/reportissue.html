@@ -4,17 +4,26 @@
 
 {%block body%}
 
-<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/reportissue.css'%}">
+<link rel="stylesheet" type="text/css"  media="screen and (min-width:900px)" href="{%static 'ulltma/css/reportissue.css'%}">
+<link rel="stylesheet" type="text/css"  media="screen and (max-width:900px)" href="{%static 'ulltma/css/reportissue-mobile.css'%}">
 
-<div class="container main">
+
+<div class="container main text-center">
 	<h1>Report an Issue</h1>
 
 	<p>Got any problems with the app? Write them down here!</p>
 	<form id="issue" action="{% url 'reportissue' %}" method="POST">
 		{%csrf_token%}
-		<input type="text" name="shortdesc" placeholder="Short Description">
-		<textarea id="longdesc" name="longdesc">Enter issue details here.</textarea>
-		<input type="submit" name="submit" value="Submit">
+		<div class="form-group">
+			<h3>Issue</h3>
+			<input type="text" class="form-control" name="shortdesc" placeholder="Short Description"><br>
+		</div>
+		<div class="form-group">
+			<h3>Additional Information</h3>
+			<textarea id="longdesc" name="longdesc" class="form-control">Enter issue details here.</textarea><br>
+		</div>
+		
+		<input type="submit" name="submit" class="btn btn-primary" value="Submit">
 	</form>
 	
 </div>

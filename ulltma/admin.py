@@ -11,7 +11,7 @@ class LearningQuestionsAdmin(admin.ModelAdmin):
 	ordering = ('scenarionum',)
 
 class BaseSkillAdmin(admin.ModelAdmin):
-	list_display=("subject", "topic", "skill", "keyword", "description")
+	list_display=("keyword", "subject", "topic", "skill", "description")
 	ordering = ('subject', 'topic', 'keyword',)
 
 class SkillTestQuestionsAdmin(admin.ModelAdmin):

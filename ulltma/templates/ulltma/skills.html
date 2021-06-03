@@ -26,7 +26,7 @@
 					<h2>{{t}}</h2>
 					{%for sk in skills%}
 						{%if sk.topic == t%}
-							<p><a href="{%url 'skillprep' sk.keyword%}">{{sk.skill}}</a></p>
+							<p><a href="{%url 'skillprep' sk.keyword%}">{{sk.keyword}} - {{sk.skill}}</a></p>
 						{%endif%}
 					{%endfor%}
 				{%endfor%}

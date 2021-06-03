@@ -82,13 +82,13 @@ class LearningTool(models.Model):
 		('VB', 'VIABLE'),
 		('NVB', 'NOT VIABLE')
 	]
-
+	
 	skill = models.ForeignKey(BaseSkill, on_delete=models.CASCADE)
 	modality = models.CharField(max_length=25, choices=MODALITIES)
 	title=models.CharField(max_length=300, default="")
 	clicked = models.IntegerField(default=0)
 	url = models.CharField(max_length=300, default="")
-	viability = models.CharField(max_length=25, choices=MODALITIES, default='VB')
+	viability = models.CharField(max_length=25, choices=VIABILITY, default='VB')
 
 
 
