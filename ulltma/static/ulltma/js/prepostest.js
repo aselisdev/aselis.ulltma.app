@@ -24,6 +24,7 @@ function nextprev(n){
   if (validateForm()){
     x[current].style.display = "none";
     current += n;
+
     if(current >= x.length){
       document.getElementById("prepost").submit();
       return false;
@@ -39,32 +40,35 @@ function nextprev(n){
 }
 
 function validateForm(){
-  currques = document.forms["prepost"]["question_"+(current+1).toString()];
+
+  var nonchk = "question_"+(current+1).toString();
+  var chk = "question_"+(current+1).toString()+"[]";
+
+  //get the current question
+  currques = document.forms["prepost"][nonchk];
+  if(currques == null){
+    currques = document.forms["prepost"][chk];
+  }
 
   //handle input text boxes
   empty = currques.type === "text" && currques.value === "";
 
-  //handle radios
-  st = currques.toString();
-  str = st.replace("[", "");
-  stri = str.replace("]", "");
-
-  unchecked = stri.split(" ")[1] === "RadioNodeList" && !validateRadio(currques);
+  //supposedly set the value of the HTML checkbox element to a concatenated string of checked values.
+  //but it doesn't work for now since HTML reads checkboxes as RADIO button elements. and type is undefined.
 
   if(empty){
     return false;
-  } else if (unchecked){
-    return false;
-  }
+  } 
 
   return true;
 }
 
 function validateRadio (radios)
 {
+  rets = "";
     for (i = 0; i < radios.length; ++ i)
     {
-        if (radios [i].checked) return true;
+        if (radios [i].checked) rets += radios[i].value;
     }
-    return false;
+  return rets;
 }

@@ -13,13 +13,14 @@
 
 	<p> Below is a list of tools that best matches your learning style. Click on either of the links, and when you're ready, see what you've learned, and click on "Ready to Test".</p>
 
-	{% if t.modality == 'V' %}
+	
+	{% if style == "VISUAL" %}
 		<h3>Learning tools for Visual Learners</h3>
-	{% elif t.modality == 'A' %}
+	{% elif style == "AUDITORY" %}
 		<h3>Learning tools for Auditory Learners</h3>
-	{% elif t.modality == 'R' %}
-		<h3>Learning tools for Reading/Writing Learners</h3>
-	{% elif t.modality == 'K' %}
+	{% elif style == "READING / WRITING" %}
+		<h3>Learning tools for Reading / Writing Learners</h3>
+	{% elif style == "KINESTHETIC" %}
 		<h3>Learning tools for Kinesthetic Learners</h3>
 	{% else %}
 		<h3>Learning tools for Multimodal Learners</h3>

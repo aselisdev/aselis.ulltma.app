@@ -1,5 +1,5 @@
 .main{
-	margin-left: 15%;
+	margin-left: 20%;
 	margin-right: 20%;
 	margin-top: 5%;
 	border-radius: 6px;
@@ -31,7 +31,7 @@
 }
 
 #resultsarea h2{
-	font-weight: lighter;
+	font-weight: 400;
 	font-kerning: auto;
 	font-size: 25px;
 	color: white;

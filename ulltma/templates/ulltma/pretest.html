@@ -21,16 +21,60 @@
 				<p id="prog">{{i}} of 3</p>
 				<br>
 				<br>
-				<h2 id="qproper">{{q.question}}</h2>
+				<h2 id="qproper">{{q.question}}</h2> <!-- question proper-->
 				<br>
-				{%if q.imgurl != "N/A"%}
+				{%if q.imgurl != "-"%}
 					<div class="text-center">
 						<img src="{{q.imgurl}}" width="200px" height="200px">
 					</div>
 				{%endif%}
 				<br>
 					<div class="text-center">
-						<input type="text" name="question_{{i}}" placeholder="Enter your answer here."> <br>
+						{%if q.qtype == "shortanswer" %}
+							<input type="text" name="question_{{i}}" placeholder="Enter your answer here."> <br>
+						{% elif q.qtype == "options" %}
+						<!--
+							<div>
+								{% if q.op1 != "-" %}
+									<input type="checkbox" id="op1" name="question_{{i}}[]" value="1"> {{q.op1}}<br>
+								{% endif %}
+								{% if q.op2 != "-" %}
+									<input type="checkbox" id="op2" name="question_{{i}}[]" value="2"> {{q.op2}}<br>
+								{% endif %}
+								{% if q.op3 != "-" %}
+									<input type="checkbox" id="op3" name="question_{{i}}[]" value="3"> {{q.op3}}<br>
+								{% endif %}
+								{% if q.op4 != "-" %}
+									<input type="checkbox" id="op4" name="question_{{i}}[]" value="4"> {{q.op4}}<br>
+								{% endif %}
+								{% if q.op5 != "-" %}
+									<input type="checkbox" id="op5" name="question_{{i}}[]" value="5"> {{q.op5}}<br>
+								{% endif %}
+							</div>
+						-->
+							<div>
+								{% if q.op1 != "-" %}
+									1. {{q.op1}}<br>
+								{% endif %}
+								{% if q.op2 != "-" %}
+									2. {{q.op2}}<br>
+								{% endif %}
+								{% if q.op3 != "-" %}
+									3. {{q.op3}}<br>
+								{% endif %}
+								{% if q.op4 != "-" %}
+									4. {{q.op4}}<br>
+								{% endif %}
+								{% if q.op5 != "-" %}
+									5.{{q.op5}}<br>
+								{% endif %}
+
+								<input type="text" name="question_{{i}}" placeholder="Enter your answer here."> <br>
+							</div>
+
+						{% elif q.qtype == "longanswer" %}
+							<textarea name="question_{{i}}" rows="5" cols="50" placeholder="Enter your answer here."></textarea>
+						{% endif %}
 					</div>
 				<br>
 				<br>

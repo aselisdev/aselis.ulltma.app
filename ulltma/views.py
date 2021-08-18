@@ -277,7 +277,8 @@ def dashboard(request):
 		for l in lavg:
 			avg += l['posttestavg']
 		
-		avg /= user_reports.count()
+		if user_reports.count() > 0:
+			avg /= user_reports.count()
 
 		retakebool = user_reports.count() > 10 and avg < 0.75
 		
@@ -363,10 +364,12 @@ def skillprep(request, keyword):
 	desc = skill.values("description")[0]["description"]
 
 	sk = BaseSkill.objects.filter(keyword=keyword).first()
+	learnstyle = list(LearningStyle.objects.filter(user=request.user).values("style"))
+	stylename = learnstyle[0]['style']
 	if UserReports.objects.filter(user=request.user, skill=sk).exists():
 		pass
 	else:
-		ls = UserReports.objects.create(user=request.user, skill=sk, finishdate = datetime.date.today())
+		ls = UserReports.objects.create(user=request.user, style=stylename, skill=sk, finishdate = datetime.date.today())
 
 	return render(request, "ulltma/skillprep.html", {
 		"name" : name, "description" : desc, "keyword" : keyword
@@ -374,28 +377,28 @@ def skillprep(request, keyword):
 
 def pretest(request, keyword):
 	skill = BaseSkill.objects.filter(keyword=keyword).first()
-	questions = list(SkillTestQuestions.objects.filter(skill=skill))
+	questions = list(SkillTestQuestion.objects.filter(skill=skill))
 
 	if request.user.is_authenticated:
 		ls = UserReports.objects.get(user=request.user, skill=skill)
 		if request.method=="POST":
-			print(request.POST["question_1"]==questions[0].answer)
-			print(request.POST["question_2"]==questions[1].answer)
-			print(request.POST["question_3"]==questions[2].answer)
+			print(request.POST["question_2"])
+
 			if request.POST["question_1"] == questions[0].answer:
-				ls.q1pretestscore = 3
+				ls.q1pretestscore = questions[0].score
 			else:
 				ls.q1pretestscore = 0
 				
 			if request.POST["question_2"] == questions[1].answer:
-				ls.q2pretestscore = 3
+				ls.q2pretestscore = questions[1].score
 			else:
 				ls.q2pretestscore = 0
 
 			if request.POST["question_3"] == questions[2].answer:
-				ls.q3pretestscore = 3
+				ls.q3pretestscore = questions[2].score
 			else:
 				ls.q3pretestscore = 0
+
 			ls.save()
 			return HttpResponseRedirect(reverse("ltools", args=(keyword,)))
 	return render(request, "ulltma/pretest.html", {"questions" : questions, "keyword" : keyword})
@@ -420,11 +423,11 @@ def ltools(request, keyword):
 			ltool.save()
 
 
-	return render(request, "ulltma/ltools.html", {"keyword" : keyword, "tools":tools})
+	return render(request, "ulltma/ltools.html", {"keyword" : keyword, "tools":tools, "style":style})
 
 def posttest(request, keyword):
 	skill = BaseSkill.objects.filter(keyword=keyword).first()
-	questions = list(SkillTestQuestions.objects.filter(skill=skill))
+	questions = list(SkillTestQuestion.objects.filter(skill=skill))
 
 	skillname = str(skill.skill) 
 

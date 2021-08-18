@@ -14,8 +14,8 @@ class BaseSkillAdmin(admin.ModelAdmin):
 	list_display=("keyword", "subject", "topic", "skill", "description")
 	ordering = ('subject', 'topic', 'keyword',)
 
-class SkillTestQuestionsAdmin(admin.ModelAdmin):
-	list_display=("skill", "question", "imgurl", "answer")
+class SkillTestQuestionAdmin(admin.ModelAdmin):
+	list_display=("skill", "question", "imgurl", "op1", "op2", "op3", "op4", "op5", "answer")
 	ordering = ('skill',)
 
 class UserReportsAdmin(admin.ModelAdmin):
@@ -42,7 +42,7 @@ class AppIssueAdmin(admin.ModelAdmin):
 admin.site.register(LearningStyle, LearningStyleAdmin)
 admin.site.register(LearningAssessment, LearningQuestionsAdmin)
 admin.site.register(BaseSkill, BaseSkillAdmin)
-admin.site.register(SkillTestQuestions, SkillTestQuestionsAdmin)
+admin.site.register(SkillTestQuestion, SkillTestQuestionAdmin)
 admin.site.register(UserReports, UserReportsAdmin)
 admin.site.register(ProfilePicture, ProfilePictureAdmin)
 admin.site.register(LearningTool, LearningToolAdmin)

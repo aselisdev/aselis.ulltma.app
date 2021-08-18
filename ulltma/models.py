@@ -41,17 +41,25 @@ class BaseSkill(models.Model):
 	def __str__(self):
 		return self.skill
 
-class SkillTestQuestions(models.Model):
+class SkillTestQuestion(models.Model):
 	skill = models.ForeignKey(BaseSkill, on_delete=models.CASCADE)
+	qtype = models.CharField(max_length=20)
 	question = models.CharField(max_length=2000)
 	imgurl = models.CharField(max_length=300)
-	answer = models.CharField(max_length=300)		
+	op1 = models.CharField(max_length=2000)
+	op2 = models.CharField(max_length=2000)
+	op3 = models.CharField(max_length=2000)
+	op4 = models.CharField(max_length=2000)
+	op5 = models.CharField(max_length=2000)
+	answer = models.CharField(max_length=300)	
+	score = models.IntegerField(default=0)	
 
 class UserReports(models.Model):
 	user = models.ForeignKey(
 		settings.AUTH_USER_MODEL,
 		on_delete=models.CASCADE
 		)
+	style = models.CharField(max_length=20, default='VISUAL')
 	skill = models.ForeignKey(BaseSkill, on_delete=models.CASCADE)
 	finishdate = models.DateField()
 	q1pretestscore = models.IntegerField(default=0)
@@ -104,8 +112,3 @@ class AppIssue(models.Model):
 	shortdesc = models.CharField(max_length=500, default="")
 	longdesc = models.CharField(max_length=1500, default="")
 	issuedate = models.DateField()
-	user = models.ForeignKey(
-		settings.AUTH_USER_MODEL,
-		on_delete=models.CASCADE
-		)
-		
