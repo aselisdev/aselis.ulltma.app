@@ -14,10 +14,10 @@
 	<form action="{%url 'changepassword' %}" method="POST">
 		{% csrf_token%}
 		<h3> Nominate a new password. </h3>
-		<input type="password" name="password">
+		{{form.pword}}
 		<br> <br>
 		<h3> Confirm New Password. </h3>
-		<input type="password" name="pconfirm"> <br>
+		{{form.pconfirm}}
 		<br>
 		{% if message %}
 			<div><p>{{message}}</p></div>

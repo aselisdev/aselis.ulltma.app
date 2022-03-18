@@ -1,0 +1,17 @@
+django
+gunicorn
+django-heroku
+pyotp
+levenshtein
+scikit-learn
+nltk
+spellchecker
+bs4
+random
+matplotlib
+numpy
+io
+urllib
+base64
+datetime
+six

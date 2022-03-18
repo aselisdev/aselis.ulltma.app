@@ -72,3 +72,5 @@ function validateRadio (radios)
     }
   return rets;
 }
+
+

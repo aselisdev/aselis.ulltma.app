@@ -23,14 +23,237 @@
 				<br>
 				<h2 id="qproper">{{q.question}}</h2>
 				<br>
-				{%if q.imgurl != "N/A"%}
+				{%if q.imgurl != "-"%}
 					<div class="text-center">
-						<img src="{{q.imgurl}}" width="200px" height="200px">
+						<img src="{{q.imgurl}}">
+					</div>
+				{%elif q.imgfile.url != "/media/-"%}
+					<div class="text-center">
+						<img src="{{q.imgfile.url}}">
 					</div>
 				{%endif%}
 				<br>
 					<div class="text-center">
-						<input type="text" name="question_{{i}}" placeholder="Enter your answer here."> <br>
+						{%if q.qtype == "shortanswer" %}
+							<input type="text" name="question_{{i}}" placeholder="Enter your answer here."> 
+							<input type="button" id="inf" value="∞" onclick="addInfinity()"><br>
+						{% elif q.qtype == "options" %}
+							<div>
+								{% if q.op1img.url != "/media/-" %}
+									A. <img src="{{q.op1img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op1 %}
+									A. <img src="{{q.op1|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op1 != "-"%}
+									A. {{q.op1}}<br>
+								{% endif %}
+
+								{% if q.op2img.url != "/media/-" %}
+									B. <img src="{{q.op2img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op2 %}
+									B. <img src="{{q.op2|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op2 != "-"%}
+									B. {{q.op2}}<br>
+								{% endif %}
+
+								{% if q.op3img.url != "/media/-" %}
+									C. <img src="{{q.op3img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op3 %}
+									C. <img src="{{q.op3|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op3 != "-"%}
+									C. {{q.op3}}<br>
+								{% endif %}
+
+								{% if q.op4img.url != "/media/-" %}
+									D. <img src="{{q.op4img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op4 %}
+									D. <img src="{{q.op4|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op4 != "-"%}
+									D. {{q.op4}}<br>
+								{% endif %}
+
+								{% if q.op5img.url != "/media/-" %}
+									E. <img src="{{q.op5img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op5 %}
+									E. <img src="{{q.op5|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op5 != "-"%}
+									E. {{q.op5}}<br>
+								{% endif %}
+
+								{% if q.op6img.url != "/media/-" %}
+									F. <img src="{{q.op6img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op6 %}
+									F. <img src="{{q.op6|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op6 != "-"%}
+									F. {{q.op6}}<br>
+								{% endif %}
+
+								{% if q.op7img.url != "/media/-" %}
+									G. <img src="{{q.op7img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op7 %}
+									G. <img src="{{q.op7|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op7 != "-"%}
+									G. {{q.op7}}<br>
+								{% endif %}
+
+								{% if q.op8img.url != "/media/-" %}
+									H. <img src="{{q.op8img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op8 %}
+									H. <img src="{{q.op8|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op8 != "-"%}
+									H. {{q.op8}}<br>
+								{% endif %}
+
+								{% if q.op9img.url != "/media/-" %}
+									I. <img src="{{q.op9img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op9 %}
+									I. <img src="{{q.op9|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op9 != "-"%}
+									I. {{q.op9}}<br>
+								{% endif %}
+
+								{% if q.op10img.url != "/media/-" %}
+									J. <img src="{{q.op10img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op10 %}
+									J. <img src="{{q.op10|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op10 != "-"%}
+									J. {{q.op10}}<br>
+								{% endif %}
+
+								{% if q.op11img.url != "/media/-" %}
+									K. <img src="{{q.op11img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op11 %}
+									K. <img src="{{q.op11|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op11 != "-"%}
+									K. {{q.op11}}<br>
+								{% endif %}
+
+								{% if q.op12img.url != "/media/-" %}
+									L. <img src="{{q.op12img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op12 %}
+									L. <img src="{{q.op12|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op12 != "-"%}
+									L. {{q.op12}}<br>
+								{% endif %}
+
+								<input type="text" name="question_{{i}}" placeholder="Enter your answer here."> 
+								<input type="button" id="inf" value="∞" onclick="addInfinity()"><br>
+							</div>
+
+						{% elif q.qtype == "longanswer" %}
+							<textarea name="question_{{i}}" rows="5" cols="50" placeholder="Enter your answer here."></textarea>
+							<input type="button" id="inf" value="∞" onclick="addInfinity()">
+						{% elif q.qtype == "graph" %}
+							<p><iframe src="https://www.desmos.com/calculator" width="1000" height="800"></iframe></p>
+							<input type="text" name="question_{{i}}" placeholder="Enter your answer here.">
+							<input type="button" id="inf" value="∞" onclick="addInfinity()"><br>
+						{% elif q.qtype == "geometry" %}
+							<div id="ggb-element"></div>
+							<input type="text" name="question_{{i}}" placeholder="Enter your answer here.">
+							<input type="button" id="inf" value="∞" onclick="addInfinity()"><br>
+						{% elif q.qtype == "geomultoptions" %}
+							<div id="ggb-element" class="text-center"></div>
+							<br>
+							<div>
+								{% if q.op1img.url != "/media/-" %}
+									A. <img src="{{q.op1img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op1 %}
+									A. <img src="{{q.op1|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op1 != "-"%}
+									A. {{q.op1}}<br>
+								{% endif %}
+
+								{% if q.op2img.url != "/media/-" %}
+									B. <img src="{{q.op2img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op2 %}
+									B. <img src="{{q.op2|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op2 != "-"%}
+									B. {{q.op2}}<br>
+								{% endif %}
+
+								{% if q.op3img.url != "/media/-" %}
+									C. <img src="{{q.op3img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op3 %}
+									C. <img src="{{q.op3|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op3 != "-"%}
+									C. {{q.op3}}<br>
+								{% endif %}
+
+								{% if q.op4img.url != "/media/-" %}
+									D. <img src="{{q.op4img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op4 %}
+									D. <img src="{{q.op4|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op4 != "-"%}
+									D. {{q.op4}}<br>
+								{% endif %}
+
+								{% if q.op5img.url != "/media/-" %}
+									E. <img src="{{q.op5img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op5 %}
+									E. <img src="{{q.op5|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op5 != "-"%}
+									E. {{q.op5}}<br>
+								{% endif %}
+
+								{% if q.op6img.url != "/media/-" %}
+									F. <img src="{{q.op6img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op6 %}
+									F. <img src="{{q.op6|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op6 != "-"%}
+									F. {{q.op6}}<br>
+								{% endif %}
+
+								{% if q.op7img.url != "/media/-" %}
+									G. <img src="{{q.op7img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op7 %}
+									G. <img src="{{q.op7|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op7 != "-"%}
+									G. {{q.op7}}<br>
+								{% endif %}
+
+								{% if q.op8img.url != "/media/-" %}
+									H. <img src="{{q.op8img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op8 %}
+									H. <img src="{{q.op8|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op8 != "-"%}
+									H. {{q.op8}}<br>
+								{% endif %}
+
+								{% if q.op9img.url != "/media/-" %}
+									I. <img src="{{q.op9img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op9 %}
+									I. <img src="{{q.op9|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op9 != "-"%}
+									I. {{q.op9}}<br>
+								{% endif %}
+
+								{% if q.op10img.url != "/media/-" %}
+									J. <img src="{{q.op10img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op10 %}
+									J. <img src="{{q.op10|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op10 != "-"%}
+									J. {{q.op10}}<br>
+								{% endif %}
+
+								{% if q.op11img.url != "/media/-" %}
+									K. <img src="{{q.op11img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op11 %}
+									K. <img src="{{q.op11|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op11 != "-"%}
+									K. {{q.op11}}<br>
+								{% endif %}
+
+								{% if q.op12img.url != "/media/-" %}
+									L. <img src="{{q.op12img.url}}" width="auto" height="auto" /><br>
+								{% elif "IMG" in q.op12 %}
+									L. <img src="{{q.op12|slice:'5:'}}" width="auto" height="auto" /><br>
+								{% elif q.op12 != "-"%}
+									L. {{q.op12}}<br>
+								{% endif %}
+
+								<input type="text" name="question_{{i}}" placeholder="Enter your answer here.">
+								<input type="button" id="inf" value="∞" onclick="addInfinity()"><br>
+							</div>
+						{% endif %}
 					</div>
 				<br>
 				<br>
@@ -45,4 +268,19 @@
 </div>
 
 <script type="text/javascript" src="{%static 'ulltma/js/prepostest.js'%}"></script>
+<script type="text/javascript">
+	y = document.getElementById('short');
+
+	function addInfinity() {
+  		y.value += "∞";
+	}
+</script>
+
+<script>  
+    var params = {"appName": "graphing", "width": 1400, "height": 600, "showToolBar": true, "showAlgebraInput": true, "showMenuBar": true };
+    var applet = new GGBApplet(params, true);
+    window.addEventListener("load", function() { 
+        applet.inject('ggb-element');
+    });
+</script>
 {% endblock %}

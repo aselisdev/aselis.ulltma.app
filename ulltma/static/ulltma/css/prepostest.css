@@ -65,3 +65,7 @@ input[type=button]{
 	margin: 0% 5% 0% 5%;
 	font-size: 20px;
 }
+
+input#inf{
+	padding: 0%;
+}

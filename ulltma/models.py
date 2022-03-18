@@ -1,6 +1,11 @@
 from django.db import models
 from django.conf import settings
-import datetime
+import datetime, pyotp
+
+#email verification
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -42,15 +47,45 @@ class BaseSkill(models.Model):
 		return self.skill
 
 class SkillTestQuestion(models.Model):
+	QTYPES = [
+		('shortanswer', 'shortanswer'),
+		('longanswer', 'longanswer'),
+		('multoptions', 'multoptions'),
+		('graph', 'graph'),
+		('numberline', 'numberline'),
+		('geometry', 'geometry'),
+		('geomultoptions', 'geomultoptions')
+	]
+
 	skill = models.ForeignKey(BaseSkill, on_delete=models.CASCADE)
-	qtype = models.CharField(max_length=20)
+	qtype = models.CharField(max_length=20, choices=QTYPES)
 	question = models.CharField(max_length=2000)
-	imgurl = models.CharField(max_length=300)
-	op1 = models.CharField(max_length=2000)
-	op2 = models.CharField(max_length=2000)
-	op3 = models.CharField(max_length=2000)
-	op4 = models.CharField(max_length=2000)
-	op5 = models.CharField(max_length=2000)
+	imgurl = models.CharField(max_length=50000, default='-')
+	imgfile = models.ImageField(upload_to='tqpics', default='-')
+	op1 = models.CharField(max_length=50000, default='-')
+	op1img = models.ImageField(upload_to='op1pics', default='-')
+	op2 = models.CharField(max_length=50000, default='-')
+	op2img = models.ImageField(upload_to='op2pics', default='-')
+	op3 = models.CharField(max_length=50000, default='-')
+	op3img= models.ImageField(upload_to='op3pics', default='-')
+	op4 = models.CharField(max_length=50000, default='-')
+	op4img = models.ImageField(upload_to='op4pics', default='-')
+	op5 = models.CharField(max_length=50000, default='-')
+	op5img = models.ImageField(upload_to='op5pics', default='-')
+	op6 = models.CharField(max_length=50000, default='-')
+	op6img = models.ImageField(upload_to='op6pics', default='-')
+	op7 = models.CharField(max_length=50000, default='-')
+	op7img = models.ImageField(upload_to='op7pics', default='-')
+	op8 = models.CharField(max_length=50000, default='-')
+	op8img = models.ImageField(upload_to='op8pics', default='-')
+	op9 = models.CharField(max_length=50000, default='-')
+	op9img = models.ImageField(upload_to='op9pics', default='-')
+	op10 = models.CharField(max_length=50000, default='-')
+	op10img = models.ImageField(upload_to='op10pics', default='-')
+	op11 = models.CharField(max_length=50000, default='-')
+	op11img = models.ImageField(upload_to='op11pics', default='-')
+	op12 = models.CharField(max_length=50000, default='-')
+	op12img = models.ImageField(upload_to='op12pics', default='-')
 	answer = models.CharField(max_length=300)	
 	score = models.IntegerField(default=0)	
 
@@ -103,12 +138,14 @@ class LearningTool(models.Model):
 	def __str__(self):
 		return '%s %s %s' % (self.skill, self.modality, self.title)
 
-class ClickedLink(models.Model):
-	skill = models.ForeignKey(BaseSkill, related_name="skill_clicked", on_delete=models.CASCADE)
-	modality = models.CharField(max_length=25)
-	url = models.CharField(max_length=300, default="")
-
 class AppIssue(models.Model):
 	shortdesc = models.CharField(max_length=500, default="")
 	longdesc = models.CharField(max_length=1500, default="")
 	issuedate = models.DateField()
+
+
+class Profile(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    email_confirmed = models.BooleanField(default=False)
+    first_time_taken_modality_test = models.BooleanField(default=False)
+    otp_secret = models.CharField(max_length=32)

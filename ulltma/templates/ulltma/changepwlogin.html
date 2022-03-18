@@ -1,0 +1,36 @@
+{% extends "ulltma/layout.html" %}
+
+{%load static %}
+
+{% block body%}
+<link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{%static 'ulltma/css/changepw.css'%}">
+<link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{%static 'ulltma/css/changepw-mobile.css'%}">
+
+<div class="container-fluid main">
+	<div class="text-center">
+		<h1> Change your password here.</h1>
+	</div>
+
+	<form action="{%url 'changepasswordlogin' %}" method="POST">
+		{% csrf_token%}
+		<h3> Enter email. </h3>
+		{{form.email}}
+		<br> <br>
+		<h3> Nominate a new password. </h3>
+		{{form.pword}}
+		<br> <br>
+		<h3> Confirm New Password. </h3>
+		{{form.pconfirm}}
+		<br>
+		{% if message %}
+			<div><p>{{message}}</p></div>
+		{%endif%}
+		<br>
+		<div class="row">
+			<input type="submit" value="Submit Password">
+			<input type="button" id="retlogin" onclick = "window.location.href = '{% url 'login' %}'" value = "Return to Login"> 
+		</div>
+		
+	</form>
+</div>
+{% endblock %}

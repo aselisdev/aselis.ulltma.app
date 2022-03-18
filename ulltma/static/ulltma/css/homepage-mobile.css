@@ -11,6 +11,11 @@
 	font-size: 2em;
 }
 
+#others, #loginform{
+	text-align: center;
+	font-size: 2em;
+}
+
 #credentials{
 	margin-top: -5%;
 }
