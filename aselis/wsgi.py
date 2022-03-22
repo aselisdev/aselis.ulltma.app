@@ -17,4 +17,4 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aselis.settings')
 
 application = get_wsgi_application()
 
-application = WhiteNoise(application, root="ulltma/static/ulltma")
+#application = WhiteNoise(application, root="ulltma/static/ulltma")
