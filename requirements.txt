@@ -9,8 +9,4 @@ spellchecker
 bs4
 matplotlib
 numpy
-io
-urllib
-base64
-datetime
 six
