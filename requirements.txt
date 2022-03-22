@@ -7,7 +7,6 @@ scikit-learn
 nltk
 spellchecker
 bs4
-random
 matplotlib
 numpy
 io
