@@ -2,6 +2,7 @@ django
 gunicorn
 django-heroku
 pyotp
+dj_database_url
 levenshtein
 scikit-learn
 nltk
