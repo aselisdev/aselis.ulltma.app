@@ -193,7 +193,7 @@ def ltprep(request):
 
 def ltestprop(request):
 
-	assess = LearningAssessment.objects.all()[:1]
+	assess = LearningAssessment.objects.all()
 	assessbed = []
 
 	visualbed = [v["visualquestion"] for v in list(assess.values("visualquestion"))]
