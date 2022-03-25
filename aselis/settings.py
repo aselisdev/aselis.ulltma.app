@@ -152,5 +152,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'dev.aselis@gmail.com'
-EMAIL_HOST_PASSWORD = 'aselis.123'
-EMAIL_USE_SSL = False
+EMAIL_HOST_PASSWORD = 'Aselis.123'
+EMAIL_USE_SSL = True
