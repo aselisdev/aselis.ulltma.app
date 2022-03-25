@@ -89,11 +89,6 @@ WSGI_APPLICATION = 'aselis.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ulltma',
-        'USER': 'aselis_db_manager',
-        'PASSWORD': 'aselis123',
-        'HOST': '127.0.0.1',
-        'PORT': '5432'
     }
 }
 
