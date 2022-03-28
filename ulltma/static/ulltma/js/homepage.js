@@ -1,3 +1,5 @@
+var myModal = document.getElementById('alert')
+
  $(document).ready(function(){
-        $("#logoutmsg").modal('show');
+        myModal.show();
     });
