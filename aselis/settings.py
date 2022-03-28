@@ -24,10 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = False
+SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.68.111', '192.168.68.107', ".herokuapp.com"]
 
@@ -149,8 +149,8 @@ TWO_FACTOR_PATCH_ADMIN = False
 #email 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'dev.aselis@gmail.com'
 EMAIL_HOST_PASSWORD = 'Aselis.123'
-EMAIL_USE_SSL = False
+EMAIL_USE_SSL = True
