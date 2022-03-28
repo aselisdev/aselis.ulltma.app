@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.68.111', '192.168.68.107', ".herokuapp.com"]
 
