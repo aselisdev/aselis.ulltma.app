@@ -1,3 +1,4 @@
+jQuery.noConflict();
 var myModal = document.getElementById('alert');
 
  $(document).ready(function(){
