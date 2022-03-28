@@ -35,7 +35,7 @@
 	<div class="text-center" id="others">
 		<p> <a href="{% url 'changepasswordlogin' %}"> Forgot Password? </a></p>
 		{%if message%}
-			<div class="modal fade" id="alert" tabindex="-1" aria-labelledby="AlertModalLabel" aria-hidden="true">
+			<div class="modal" id="alert" tabindex="-1" aria-labelledby="AlertModalLabel" aria-hidden="true">
 			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      <div class="modal-header">
@@ -49,5 +49,5 @@
 			</div>
 		{% endif %}
 	</div>
-	<!--<script type="text/javascript" src="{%static 'ulltma/js/homepage.js'%}"></script>-->
+	<script type="text/javascript" src="{%static 'ulltma/js/homepage.js'%}"></script>
 {%endblock content%}
