@@ -35,17 +35,17 @@
 	<div class="text-center" id="others">
 		<p> <a href="{% url 'changepasswordlogin' %}"> Forgot Password? </a></p>
 		{%if message%}
-			<div class="modal fade" id="logoutmsg" tabindex="-1" role="dialog" aria-labelledby="alertPopup">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h3 class="modal-title">Alert</h3>
-						</div>
-						<div class="modal-body">
-							<p id="modalmsg">{{message}}</p>
-						</div>
-					</div>
-				</div>
+			<div class="modal fade" id="alertmsg" tabindex="-1" aria-labelledby="AlertModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="AlertModalLabel">Info</h5>
+			      </div>
+			      <div class="modal-body">
+			        <p>{{message}}</p>
+			      </div>
+			    </div>
+			  </div>
 			</div>
 		{% endif %}
 	</div>
