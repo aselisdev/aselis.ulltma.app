@@ -1,5 +1,5 @@
-var myModal = document.getElementById('alert');
+var myModal = new bootstrap.Modal(document.getElementById('alert'));
 
- $(document).ready(function(){
+ /**$(document).ready(function(){
         $('#alert').modal('show');
-    });
+    });**/
