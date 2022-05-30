@@ -1,0 +1,102 @@
+.main{
+	border-radius: 6px;
+	padding-top: 3%;
+	padding-left: 6%;
+}
+
+#resultsarea{
+	margin-top: 4%;
+	text-align: left;
+}
+
+#resultsarea h1{
+	color: #826e17;
+	font-size: 30px;
+	margin-top: 2%;
+}
+
+#resultsarea a{
+	color: #c1ab30;
+}
+
+#resultsarea .gradient{
+	margin-top: -0.75%; 
+	height: 3px;
+	background-image: linear-gradient(to right, rgba(251,216,8,1), rgba(251,216,8,0));
+}
+
+#resultsarea a:hover{
+	text-decoration: underline;
+}
+
+#resultsarea h2{
+	font-weight: 400;
+	font-kerning: auto;
+	font-size: 25px;
+	color: white;
+	font-variant-caps: small-caps;
+	margin-top: -0.25%;
+}
+
+#resultsarea p{
+	color: white;
+	font-style: italic;
+	margin-top: -1%;
+}
+
+#searchbar{
+	margin-left: -6%;
+}
+
+input[type=text]{
+	width: 50%;
+	border-radius: 50px;
+}
+
+input[type=button], input[type=submit]{
+	border-radius: 50px;
+}
+
+.no-border{
+	border: 0;
+}
+
+#msg p{
+	margin-left: -10%;
+	margin-top: 4%;
+}
+
+#logobrand{
+	margin-bottom: 2%;
+	margin-left: -8%;
+}
+
+#logobrand img{
+	width: 9em;
+	height: 9em;
+}
+
+#logobrand p{
+	margin-top: .5%;
+	margin-left: -0.25%;
+	color: white;
+	font-size: 2.35em;
+	font-weight: bold;
+}
+
+#bottom{
+	margin-top: 19%;
+	margin-left: -8%;
+	margin-bottom: 0%;
+	bottom: 0px;
+}
+
+#botlogo{
+	margin-bottom: -1%;
+	width: 20em;
+	height: 5em;  
+}
+
+#copyright{
+	color: #826e17;
+}

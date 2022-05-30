@@ -7,7 +7,12 @@
 <link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{%static 'ulltma/css/skills.css'%} ">
 <link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{%static 'ulltma/css/skills-mobile.css'%} ">
 
-<div class="container main">
+<div class="container main text-center">
+	<div id="logobrand">
+		<img src="{%static 'ulltma/images/ulltmalogo.png'%}">
+		<p>CONCEPTS/SKILLS</p>
+	</div>
+
 	<div id="searchbar">
 		<form action="{%url 'skillsearch'%}" method="POST">
 			{%csrf_token%}
@@ -26,7 +31,8 @@
 					<h2>{{t}}</h2>
 					{%for sk in skills%}
 						{%if sk.topic == t%}
-							<p><a href="{%url 'skillprep' sk.keyword%}">{{sk.keyword}} - {{sk.skill}}</a></p>
+							<p id="skilltitle" style=" margin-bottom: 0.5%;">{{sk.skill}}</p>
+							<p><a href="{%url 'skillprep' sk.keyword%}">{{sk.description}}</a></p>
 						{%endif%}
 					{%endfor%}
 				{%endfor%}
@@ -36,7 +42,11 @@
 				<p>Sorry! No results to display.</p>
 			</div>
 		{%endfor%}
+	</div>
 
+	<div id="bottom">
+		<img id="botlogo" src="{%static 'ulltma/images/trademark_small.png'%}">
+		<p id="copyright">Copyright © 2022. All rights reserved.</p>
 	</div>
 </div>
 {% endblock %}

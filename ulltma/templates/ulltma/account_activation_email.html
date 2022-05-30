@@ -1,7 +1,12 @@
-{% autoescape off %}
-Hi {{ user.username }},
+{% extends "ulltma/emailayout.html" %}
 
-Please click on the link below to confirm your registration:
+{% load static %}
 
-http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
-{% endautoescape %}
+{% block body %}
+<div class="text-center main">
+	<img src="cid:image" height="50px" width="175px" style="align-self: center;">
+	<p> Hi {{ user.first_name }}, </p>
+	<p> Please click on the link below to confirm your registration: </p>
+	<p> <a href="https://{{ domain }}{% url 'activate' uidb64=uid token=token %}">https://{{ domain }}{% url 'activate' uidb64=uid token=token %}</a></p>
+</div>
+{% endblock %}

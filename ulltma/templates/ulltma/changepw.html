@@ -8,15 +8,18 @@
 
 <div class="container-fluid main">
 	<div class="text-center">
-		<h1> Change your password here.</h1>
+		<h1> Change password.</h1>
 	</div>
 
 	<form action="{%url 'changepassword' %}" method="POST">
 		{% csrf_token%}
-		<h3> Nominate a new password. </h3>
+		<h3> Type your current password. </h3>
+		{{form.pcurrent}}
+		<br>
+		<h3> New password </h3>
 		{{form.pword}}
-		<br> <br>
-		<h3> Confirm New Password. </h3>
+		<br>
+		<h3> Reenter New Password </h3>
 		{{form.pconfirm}}
 		<br>
 		{% if message %}

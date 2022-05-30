@@ -7,6 +7,7 @@
 
 #resultsarea{
 	margin-top: 4%;
+	text-align: left;
 }
 
 #resultsarea h1{
@@ -50,7 +51,6 @@
 }
 
 #searchbar{
-	margin-left: 20%;
 }
 
 input[type=text]{
@@ -70,4 +70,43 @@ input[type=button]{
 #msg p{
 	margin-left: -10%;
 	margin-top: 4%;
+}
+
+#logobrand{
+	margin-bottom: 2%;
+}
+
+#logobrand img{
+	width: 9em;
+	height: 9em;
+	display: block;
+  	margin-left: auto;
+ 	margin-right: auto;
+}
+
+#logobrand p{
+	color: white;
+	text-align: center;
+	font-weight: bold;
+	font-size: 2em;
+}
+
+
+#bottom{
+	margin-top: 8%;
+	margin-right: auto;
+	bottom: 0px;
+}
+
+#botlogo{
+	margin-bottom: -4%;
+	width: 20em;
+	display: block;
+  	margin-left: auto;
+ 	margin-right: auto;
+}
+
+#copyright{
+	color: #826e17;
+ 	text-align: center;
 }

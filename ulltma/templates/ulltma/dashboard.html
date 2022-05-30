@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{%static 'ulltma/css/dashboard-mobile.css' %}">
 
 <div class="container-fluid main">
-	<div class="modal fade" id="alert" tabindex="-1" role="dialog" aria-labelledby="alertPopup">
+	<!--<div class="modal fade" id="alert" tabindex="-1" role="dialog" aria-labelledby="alertPopup">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -19,47 +19,54 @@
 						<p id="modalmsg">Learning changes over time, so why not retake the Learning Style Assessment to re-assess your learning style?</p>
 					{%endif%}
 					{% if rt %}
-						<p id="modalmsg">Perhaps your current learning style isn't the best for you at the moment, would you like to retake the Learning Style Assessment?</p>
+						<p id="modalmsg">Perhaps your current learning style isn't the best for you at the moment. Would you like to retake the Learning Style Assessment?</p>
 					{%endif%}
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 
+	<div class="text-center" id="logobrand">
+		<img src="{%static 'ulltma/images/ulltmalogo.png'%}">
+		<p>DASHBOARD</p>
+	</div>
 
 	<div class="text-center" id="greeting">
 		<div class=".pfp">
-			<img src="{{pfp.pfp.url}}" width="150" height="150"><br>
-			<p><a href="{%url 'pfpchange' %}"> Change Profile Picture</a></p>
+			<img src="{{pfp.pfp.url}}" id="pfp"><br>
+			<p id="pfptext"><a href="{%url 'pfpchange' %}"> Change Profile Picture</a></p>
 		</div>
 
-		<h1> <span id="fn">Hi {{firstname}} {{lastname}}</span>, what would you like to learn today? </h1>
+		<h1> Hi <span id="fn">{{firstname}}</span>, what would you like to learn today? </h1>
 	</div>
 
 	<div class="row text-center" id = "buttonset">
 		<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-			<button class="select" onclick="window.location.href='{% url 'skillsearch' %}' ">
-				<img src="{%static 'ulltma/images/skill.png'%}" width="75px" height="75px">
-				<br> <br>
-			 	<h3>Skill/Concept</h3> 
+			<button class="select" id="skill" onclick="window.location.href='{% url 'skillsearch' %}' ">
+				<img src="{%static 'ulltma/images/skills.png'%}">
+				<br>
 			</button> 
 		</div>
 		<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-			<button class="select" onclick="window.location.href='{% url 'reportsearch' %}' ">
-				<img src="{%static 'ulltma/images/reports.png'%}" width="75px" height="75px">
-				<br> <br>
-			 	<h3>Report</h3> 
+			<button class="select" id="report" onclick="window.location.href='{% url 'reportsearch' %}' ">
+				<img src="{%static 'ulltma/images/reports.png'%}">
+			 	<br>
 			</button> 
 		</div>
 	</div>
 </div>
 
-<script type="text/javascript">
+<div class="text-center" id="bottom">
+	<img id="botlogo" src="{%static 'ulltma/images/trademark_small.png'%}">
+	<p id="copyright">Copyright © 2022. All rights reserved.</p>
+</div>
+
+<!--<script type="text/javascript">
 	var myModal = new bootstrap.Modal(document.getElementById('alert'));
 
 	if({{daysleft}} < 20 || {{rt|lower}})
 		myModal.show();
-</script>
+</script>--->
 {% endblock %}
 
 

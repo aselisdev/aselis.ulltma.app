@@ -1,10 +1,11 @@
-{% extends "ulltma/layout.html" %}
+{% extends "ulltma/homestyle.html" %}
 
 {%load static%}
 
 {%block body%}
 
-<link rel="stylesheet" type="text/css" href="{%static 'ulltma/css/learnreport.css'%}">
+<link rel="stylesheet" type="text/css"  media="screen and (min-width:900px)" href="{%static 'ulltma/css/learnreport.css'%}">
+<link rel="stylesheet" type="text/css"  media="screen and (max-width:900px)" href="{%static 'ulltma/css/learnreport-mobile.css'%}">
 
 	<div class="container-fluid main">
 		<div class="text-center">
@@ -23,10 +24,8 @@
 			{%endfor%}
 			</ul>
 		</div>
-		
-		<br><br>
 		<div class="text-center">
-			<button class="btn-light" onclick="window.location.href='{% url 'dashboard' %}' "> Go to Learner Home Page </button>
+			<button class="btn-light go-to" onclick="window.location.href='{% url 'dashboard' %}' "> Go to Learner Home Page </button>
 		</div>
 		
 	</div>

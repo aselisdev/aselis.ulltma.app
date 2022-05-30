@@ -24,12 +24,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.68.111', '192.168.68.107', ".herokuapp.com"]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.68.111', '192.168.68.107', ".herokuapp.com", 'ulltma.com', "www.ulltma.com"]
 
 
 # Application definition
@@ -48,6 +49,10 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',
     'two_factor',
+    #storages
+    'storages',
+    #cloudinary
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -97,6 +102,18 @@ import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ulltma',
+        'USER': 'aselis_db_manager',
+        'PASSWORD': 'aselis123',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
+    }
+}
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -130,6 +147,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+#AWS stuff
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -148,9 +166,9 @@ TWO_FACTOR_PATCH_ADMIN = False
 
 #email 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = False
+EMAIL_HOST = 'webmail.aselis.com'
+EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'dev.aselis@gmail.com'
-EMAIL_HOST_PASSWORD = 'Aselis.123'
-EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'donotreply@aselis.com'
+EMAIL_HOST_PASSWORD = 'Aselisulltma!337Stitch'
+EMAIL_USE_SSL = False

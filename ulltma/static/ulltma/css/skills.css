@@ -1,13 +1,11 @@
 .main{
-	margin-left: 20%;
-	margin-right: 20%;
-	margin-top: 5%;
 	border-radius: 6px;
 	padding: 3%;
 }
 
 #resultsarea{
 	margin-top: 4%;
+	text-align:left;
 }
 
 #resultsarea h1{
@@ -46,7 +44,6 @@
 }
 
 #searchbar{
-	margin-left: 20%;
 }
 
 input[type=text]{
@@ -66,3 +63,38 @@ input[type=button], input[type=submit]{
 	margin-left: -10%;
 	margin-top: 4%;
 }
+
+#logobrand{
+	margin-bottom: 2%;
+}
+
+#logobrand img{
+	width: 9em;
+	height: 9em;
+	margin-left: -2.5%;
+}
+
+#logobrand p{
+	text-align: center;
+	margin-top: 2%;
+	color: white;
+	font-size: 2.5em;
+	font-weight: bold;
+}
+
+#bottom{
+	margin-top: 8%;
+	margin-right: auto;
+	bottom: 0px;
+}
+
+#botlogo{
+	margin-bottom: -2%;
+	width: 20em;
+	height: 5em;
+}
+
+#copyright{
+	color: #826e17;
+}
+

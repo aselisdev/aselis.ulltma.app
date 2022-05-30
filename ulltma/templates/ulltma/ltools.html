@@ -8,57 +8,57 @@
 <link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{%static 'ulltma/css/ltools.css'%}">
 <link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{%static 'ulltma/css/ltools-mobile.css'%}">
 
-<div class="container main">
+<div class="container main text-center">
 	<h2> Learning Tools </h2>
 
-	<p> Below is a list of tools that best matches your learning style. Click on either of the links, and when you're ready, see what you've learned, and click on "Ready to Test".</p>
+	<p> Below is a list of tools that best matches your learning style. Assessments are still under construction so you may click the button below to return to dashboard.</p>
 
 	
 	{% if style == "VISUAL" %}
-		<h3>Learning tools for Visual Learners</h3>
+		<h3>Learning Tools for Visual Learners</h3>
 	{% elif style == "AUDITORY" %}
-		<h3>Learning tools for Auditory Learners</h3>
+		<h3>Learning Tools for Auditory Learners</h3>
 	{% elif style == "READING / WRITING" %}
-		<h3>Learning tools for Reading / Writing Learners</h3>
+		<h3>Learning Tools for Reading / Writing Learners</h3>
 	{% elif style == "KINESTHETIC" %}
-		<h3>Learning tools for Kinesthetic Learners</h3>
+		<h3>Learning Tools for Kinesthetic Learners</h3>
 	{% else %}
-		<h3>Learning tools for Multimodal Learners</h3>
+		<h3>Learning Tools for Multimodal Learners</h3>
 	{% endif %}
 
 	{%for t in tools%}
 		{%with i=forloop.counter%}
 			{%csrf_token%}
 			{% if t.modality == "V" %}
-				<h3><a target="_self" id="link_{{i}}" onclick="showhref({{i}}, '{{keyword}}');" href="{{t.url}}">{{t.title}} -- Visual {{i}}</a></h3>
+				<h3><a href="{{t.url}}">{{t.title}} -- Visual {{i}}</a></h3>
 			{% elif t.modality == "A" %}
-				<h3><a target="_self" id="link_{{i}}" onclick="showhref({{i}}, '{{keyword}}');" href="{{t.url}}">{{t.title}} -- Auditory {{i}}</a></h3>
+				<h3><a href="{{t.url}}">{{t.title}} -- Auditory {{i}}</a></h3>
 			{% elif t.modality == "R" %}
-				<h3><a target="_self" id="link_{{i}}" onclick="showhref({{i}}, '{{keyword}}');" href="{{t.url}}">{{t.title}} -- Reading {{i}}</a></h3>
+				<h3><a href="{{t.url}}">{{t.title}} -- Reading {{i}}</a></h3>
 			{% elif t.modality == "K" %}
-				<h3><a target="_self" id="link_{{i}}" onclick="showhref({{i}}, '{{keyword}}');" href="{{t.url}}">{{t.title}} -- Kinesthetic {{i}}</a></h3>
+				<h3><a href="{{t.url}}">{{t.title}} -- Kinesthetic {{i}}</a></h3>
 			{% else %}
-				<h3><a target="_self" id="link_{{i}}" onclick="showhref({{i}}, '{{keyword}}');" href="{{t.url}}">{{t.title}} -- Multimodal {{i}}</a></h3>
+				<h3><a href="{{t.url}}">{{t.title}} -- Multimodal {{i}}</a></h3>
 			{% endif %}
 		{%endwith%}
 	{%empty%}
 		<p><i>There are no tools to display.</i></p>
 	{%endfor%}
 	<br>
-	<p><i>If those tools are not enough for you, you may also want to try out these tools as well:</i></p>
+	<p><i>If you still need more tools, you may also want to try out these tools as well:</i></p>
 	{%for o in others%}
 		{%with i=forloop.counter%}
 			{%csrf_token%}
 			{% if o.modality == "V" %}
-				<h3><a target="_self" id="link_{{i}}" onclick="showhref({{i}}, '{{keyword}}');" href="{{o.url}}">{{o.title}} -- Visual</a></h3>
+				<h3><a href="{{o.url}}">{{o.title}} -- Visual</a></h3>
 			{% elif o.modality == "A" %}
-				<h3><a target="_self" id="link_{{i}}" onclick="showhref({{i}}, '{{keyword}}');" href="{{o.url}}">{{o.title}} -- Auditory</a></h3>
+				<h3><a href="{{o.url}}">{{o.title}} -- Auditory</a></h3>
 			{% elif o.modality == "R" %}
-				<h3><a target="_self" id="link_{{i}}" onclick="showhref({{i}}, '{{keyword}}');" href="{{o.url}}">{{o.title}} -- Reading</a></h3>
+				<h3><a href="{{o.url}}">{{o.title}} -- Reading</a></h3>
 			{% elif o.modality == "K" %}
-				<h3><a target="_self" id="link_{{i}}" onclick="showhref({{i}}, '{{keyword}}');" href="{{o.url}}">{{o.title}} -- Kinesthetic</a></h3>
+				<h3><a href="{{o.url}}">{{o.title}} -- Kinesthetic</a></h3>
 			{% else %}
-				<h3><a target="_self" id="link_{{i}}" onclick="showhref({{i}}, '{{keyword}}');" href="{{o.url}}">{{o.title}} -- Multimodal</a></h3>
+				<h3><a href="{{o.url}}">{{o.title}} -- Multimodal</a></h3>
 			{% endif %}
 		{%endwith%}
 	{%empty%}
@@ -67,7 +67,8 @@
 
 	<br><br>
 	<div class="text-center">
-			<button class = "btn-light no-border" onclick="window.location.href='{% url 'posttest' keyword%}' ">Ready to Test!</button>
+			<!--<button class = "btn-light no-border" onclick="window.location.href='{% url 'posttest' keyword%}' ">Ready to Test!</button>-->
+			<button class = "btn-light no-border" onclick="window.location.href='{% url 'dashboard' %}' ">Return to Dashboard</button>
 	</div>
 
 </div>

@@ -35,9 +35,9 @@
 				<br>
 					<div class="text-center">
 						{%if q.qtype == "shortanswer" %}
-							<input type="text" name="question_{{i}}" placeholder="Enter your answer here."> 
+							<input type="text" id = "short" name="question_{{i}}" placeholder="Enter your answer here."> 
 							<input type="button" id="inf" value="∞" onclick="addInfinity()"><br>
-						{% elif q.qtype == "options" %}
+						{% elif q.qtype == "multoptions" %}
 							<div>
 								{% if q.op1img.url != "/media/-" %}
 									A. <img src="{{q.op1img.url}}" width="auto" height="auto" /><br>
@@ -144,11 +144,11 @@
 							<input type="button" id="inf" value="∞" onclick="addInfinity()">
 						{% elif q.qtype == "graph" %}
 							<p><iframe src="https://www.desmos.com/calculator" width="1000" height="800"></iframe></p>
-							<input type="text" name="question_{{i}}" placeholder="Enter your answer here.">
+							<input type="text" id="short" name="question_{{i}}" placeholder="Enter your answer here.">
 							<input type="button" id="inf" value="∞" onclick="addInfinity()"><br>
 						{% elif q.qtype == "geometry" %}
 							<div id="ggb-element"></div>
-							<input type="text" name="question_{{i}}" placeholder="Enter your answer here.">
+							<input type="text" id="short" name="question_{{i}}" placeholder="Enter your answer here.">
 							<input type="button" id="inf" value="∞" onclick="addInfinity()"><br>
 						{% elif q.qtype == "geomultoptions" %}
 							<div id="ggb-element" class="text-center"></div>
@@ -250,7 +250,7 @@
 									L. {{q.op12}}<br>
 								{% endif %}
 
-								<input type="text" name="question_{{i}}" placeholder="Enter your answer here.">
+								<input type="text" id="short" name="question_{{i}}" placeholder="Enter your answer here.">
 								<input type="button" id="inf" value="∞" onclick="addInfinity()"><br>
 							</div>
 						{% endif %}
@@ -258,9 +258,13 @@
 				<br>
 				<br>
 				<div class="text-center">
-					<input type="button" id="previous" onclick="nextprev(-1)" value="Previous">
-					<input type="button" id="next" onclick="nextprev(1)" value="Next">
+					<input type="button" class="no-border" id="previous" onclick="nextprev(-1)" value="Previous">
+					<input type="button" class="no-border" id="next" onclick="nextprev(1)" value="Next">
 				</div>	
+				<br>
+				<div class="oncalc">
+					<p><iframe src="https://www.mathway.com/Algebra" width="80%" height="120%"></iframe></p>
+				</div>
 			</div>
 		{%endwith%}
 		{% endfor %}
@@ -272,7 +276,10 @@
 	y = document.getElementById('short');
 
 	function addInfinity() {
-  		y.value += "∞";
+  		if(y.value == null)
+  			y.value = "∞";
+  		else
+  			y.value += "∞";
 	}
 </script>
 

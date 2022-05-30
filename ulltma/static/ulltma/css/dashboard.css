@@ -8,8 +8,9 @@ html, body {
 
 .main{
 	margin-top: 1%;
+	margin-left: -.75%;
 	padding-top: 3%;
-	padding-left: 5%; 
+	padding-left: 4%; 
 	padding-right: 5%;
 }
 
@@ -40,10 +41,12 @@ button{
 }
 
 
-img{
-	border-radius: 50%;
+#pfp{
 	border-color: white;
-	margin-bottom: 2%;
+	margin-bottom: 1%;
+	border-radius: 100%;
+	width: 7em;
+	height: 7em;
 }
 
 a{
@@ -53,6 +56,7 @@ a{
 h1{
 	color: white;
 	font-weight: normal;
+	font-size: 1.75em;
 }
 
 #fn{
@@ -62,4 +66,66 @@ h1{
 #modalmsg{
 	font-size: 18px;
 	color: black;
+}
+
+#bottom{
+	margin-top: 5%;
+	margin-left: -2.5%;
+	margin-right: auto;
+	bottom: 0px;
+}
+
+#botlogo{
+	margin-bottom: -.75%;
+	width: 20em;
+	height: 5em;
+}
+
+#copyright{
+	color: #826e17;
+}
+
+#logobrand{
+	margin-bottom: 2%;
+}
+
+#logobrand img{
+	width: 10em;
+	height: 10em;
+}
+
+#logobrand p{
+	margin-top: .5%;
+	color: white;
+	font-size: 3.75em;
+	font-weight: bold;
+	text-align: center;
+}
+
+#skill{
+	padding-bottom: .5em;
+	padding-left: .5em;
+	padding-right: .5em;
+	margin-right: -69%;
+}
+
+#skill img{
+	height: 8em;
+	width: 8em;
+}
+
+#report{
+	padding-left: .5em;
+	padding-right: .5em;
+	padding-bottom: .5em;
+	margin-left: -70%;
+}
+
+#report img{
+	height: 8em;
+	width: 8em;
+}
+
+#reporttext{
+	font-weight: normal;
 }

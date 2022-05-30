@@ -17,3 +17,30 @@ input[type=radio]{
 .nlink:hover{
 	text-decoration: underline;
 }
+
+.navbar-brand{
+	color: white;
+	font-size: 2em;
+	font-weight: bold;
+}
+
+
+.btn:hover{
+	background-color: #792dc4;
+}
+
+.btn:focus{
+	background-color: #792dc4;
+}
+
+#logo{
+	height: 4em;
+	width: 4em;
+	margin-left: -10%;
+}
+
+#threehash{
+	width: 3em;
+	height: 3em;
+}
+

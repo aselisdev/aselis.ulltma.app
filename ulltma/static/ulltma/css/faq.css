@@ -1,22 +1,10 @@
-body{
-	background-color: white;
-}
-
 .main{
 	margin: 5% 5% 5% 10%;
 	border-radius: 6px;
 	padding: 2%;
 }
 
-h1{
-	color: black;
-	text-align: center;
-}
-
-h2{
-	color: black;
-}
 
 p{
-	color: black;
+	color: white;
 }

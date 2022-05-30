@@ -4,11 +4,16 @@
 
 {% block body%}
 
-<link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{%static 'ulltma/css/skills.css'%} ">
-<link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{%static 'ulltma/css/skills-mobile.css'%} ">
+<link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{%static 'ulltma/css/reports.css'%} ">
+<link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{%static 'ulltma/css/reports-mobile.css'%} ">
 
-<div class="container main">
-	<div id="searchbar">
+<div class="container main text-center">
+	<div id="logobrand" class="text-center">
+		<img src="{%static 'ulltma/images/ulltmalogo.png'%}">
+		<p>REPORTS</p>
+	</div>
+
+	<div id="searchbar" class="text-center">
 		<form action="{% url 'reportsearch' %}" method="POST">
 			<input type="text" class="no-border" name="searchtext">
 			<input type="button" class="no-border" value="Search">
@@ -16,15 +21,21 @@
 	</div>
 
 	<div id = "resultsarea">
-		<h2><a href="{% url 'learnstylereport' %}">Learner's Style Report </a></h2>
+		<h2><a href="{% url 'learnstylereport' %}">Learner's Style Report -- taken last {{datetaken}} </a></h2>
 
 		{%for r in reports%}
-			<h2><a href="{%url 'learnresult' r.skill%}">{{r.skill}}</a></h2>
+			<h2><a href="{%url 'learnresult' r.skill%}">{{r.skill}} - {{r.finishdate}}</a></h2>
 		{%empty%}
 			<div id="msg" class="text-center">
 				<p>Sorry! No results to display. Why not try learning a skill first?</p>
 			</div>
 		{%endfor%}
 	</div>
+
+	<div id="bottom" class="text-center">
+		<img id="botlogo" src="{%static 'ulltma/images/trademark_small.png'%}">
+		<p id="copyright">Copyright © 2022. All rights reserved.</p>
+	</div>
 </div>
+
 {% endblock %}

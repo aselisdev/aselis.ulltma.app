@@ -106,11 +106,18 @@ class UserReports(models.Model):
 	posttestavg = models.FloatField(default=0)
 
 class ProfilePicture(models.Model):
+	PFP_CHOICES = [
+		('default1', 'default 1'),
+		('default2', 'default 2'),
+		('default3', 'default 3'),
+		('default4', 'default 4'),
+	]
 	user = models.ForeignKey(
 		settings.AUTH_USER_MODEL,
 		on_delete=models.CASCADE
 		)
 	pfp = models.ImageField(upload_to='ulltma/pfp', default='ulltma/pfp/default.png')
+	default_preference = models.CharField(max_length=20, choices=PFP_CHOICES, default='default 1')
 
 class LearningTool(models.Model):
 	MODALITIES = [
@@ -148,4 +155,5 @@ class Profile(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     email_confirmed = models.BooleanField(default=False)
     first_time_taken_modality_test = models.BooleanField(default=False)
+    receive_email_notif = models.BooleanField(default=True)
     otp_secret = models.CharField(max_length=32)

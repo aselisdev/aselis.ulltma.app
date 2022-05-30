@@ -5,11 +5,13 @@ class SignInForm(forms.Form):
 	firstname = forms.CharField(label = '', max_length=100, widget=forms.TextInput(attrs = {'class' : 'formbox'}))
 	lastname = forms.CharField(label = '', max_length=100, widget=forms.TextInput(attrs = {'class' : 'formbox'}))
 	email = forms.CharField(label = '', max_length=100, widget=forms.TextInput(attrs = {'class' : 'formbox'}))
+	emailconfirm = forms.CharField(label = '', max_length=100, widget=forms.TextInput(attrs = {'class' : 'formbox'}))
 	pword = forms.CharField(label = '', max_length=100, widget=forms.PasswordInput(attrs = {'class' : 'formbox'}))
 	pconfirm = forms.CharField(label = '', max_length=100, widget=forms.PasswordInput(attrs = {'class' : 'formbox'}))
 
 
 class ChangePWordForm(forms.Form):
+	pcurrent = forms.CharField(label = '', max_length=100, widget=forms.PasswordInput(attrs = {'class' : 'formbox'}))
 	pword = forms.CharField(label = '', max_length=100, widget=forms.PasswordInput(attrs = {'class' : 'formbox'}))
 	pconfirm = forms.CharField(label = '', max_length=100, widget=forms.PasswordInput(attrs = {'class' : 'formbox'}))
 

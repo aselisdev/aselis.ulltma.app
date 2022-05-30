@@ -1,0 +1,15 @@
+{% extends "ulltma/loggedin.html" %}
+
+{%load static %}
+
+{% block body%}
+<link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{%static 'ulltma/css/changepw.css'%}">
+<link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{%static 'ulltma/css/changepw-mobile.css'%}">
+
+<div class="container-fluid main">
+	<div class="text-center">
+		<h1> You have successfully changed your password.</h1>
+		<button class="btn-light go-to" onclick="window.location.href='{% url 'dashboard' %}' "> Return to Learner Home Page </button>
+	</div>
+</div>
+{% endblock %}

@@ -1,5 +1,4 @@
-{% extends "ulltma/layout.html" %}
-
+{% extends "ulltma/homestyle.html"%}
 {% load static%}
 
 {% block body%}
@@ -7,19 +6,28 @@
 <link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{%static 'ulltma/css/results.css'%}">
 <link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{%static 'ulltma/css/results-mobile.css'%}">
 
-<div class="container main text-center">
-	<h2>REPORT FOR {{fname}}</h2>
-	<H3>{{name}}</H3>
-	<H3>{{date}}</H3>
+<div class="container-fluid main">
+	<img id="logo" src="{%static 'ulltma/images/ulltmalogo.png' %}">
+	<div class="description text-center">
+		<h2>REPORT FOR {{fname}}</h2>
+		<H3>{{name}}</H3>
+		<H3>{{date}}</H3>
+	</div>
 	<br><br>
 	<div class="img text-center">
-		<img src="data:image/png;base64,{{data}}" height="300" width="300">
+		<img id="graph" src="data:image/png;base64, {{data|safe}}">
 	</div>
 	
 	<br> <br>
 
-	<div class="text-center">
-		<button class="btn-light no-border" onclick="window.location.href='{% url 'dashboard' %}' "> Go Back </button>
+	<div class="text-center row">
+		<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+			<button class="btn-light no-border" id="returnrep" onclick="window.location.href='{% url 'reportsearch' %}' "> Return to Reports Page </button>
+		</div>
+		
+		<div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+			<button class="btn-light no-border" id="returndash" onclick="window.location.href='{% url 'dashboard' %}' "> Return to Dashboard </button>
+		</div>
 	</div>
 </div>
 {% endblock %}

@@ -3,7 +3,7 @@ body{
 }
 
 .main{
-	margin: 2.5% 5% 5% 17.5%;
+	margin: 2.5% 5% 5% 0%;
 	border-radius: 6px;
 	padding: 2%;
 }
@@ -19,14 +19,23 @@ p{
 }
 
 .img{
-	margin-top: -5%;
+	margin-top: -2.25%;
+}
+
+#returnrep{
+	margin-right: -55%;
+}
+
+#returndash{
+	margin-left: -55%;
 }
 
 .btn-light{
 	padding: 10px;
-	padding-left: 10%;
-	padding-right: 10%;
-	background-color: #563463;
+	padding-left: 2.5%;
+	padding-right: 2.5%;
+	background-color: #7f6404;
+	margin: 1%;
 	color: white;
 	font-size: 20px;
 	border-radius: 50px;
@@ -41,4 +50,12 @@ p{
 h3{
 	color: #ad8dba;
 	font-size:20px;
+}
+
+#logo{
+	height: 8em;
+	width: 8em;
+	margin-left: 46.25%;
+	display: block;
+	margin-bottom: 1%;
 }

@@ -4,6 +4,7 @@ current = 0;
 showtab(current);
 
 function showtab(n){
+  $(window).scrollTop(0);
   x[n].style.display = 'block';
   if (n == 0) {
     document.getElementById("previous").style.display = "none";

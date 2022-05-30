@@ -4,7 +4,7 @@
 
 {%block content%}
 	<div class="text-center" id="description">
-		<img src="{%static 'ulltma/images/ulltmalogo.png'%}" width="150" height="150">
+		<img src="{%static 'ulltma/images/ulltmalogo.png'%}" width="300" height="300">
 		<br>
 		<br>
 		<p> Welcome to</p> 
@@ -29,20 +29,31 @@
 					<input type="button" id="sgin" onclick = "window.location.href = '{% url 'signin' %}'" value = "Sign Up">  
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
+				<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+					<input type="button" id="glgin" onclick = "window.location.href = '{% url 'guestlogin' %}'" value = "Log in as Guest"> 
+				</div>
+				<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
+			</div>
 		</form>
 	</div>
 		<br>
 	<div class="text-center" id="others">
-		<p> <a href="{% url 'changepasswordlogin' %}"> Forgot Password? </a></p>
+		<p id="forgotpw"> <a href="{% url 'changepasswordlogin' %}"> Forgot Password? </a></p>
 		{%if message%}
 			<div class="modal" id="alert" tabindex="-1" aria-labelledby="AlertModalLabel" aria-hidden="true" data-auto-open>
-			  <div class="modal-dialog">
+			  <div class="modal-dialog modal-dialog-centered">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="AlertModalLabel">Info</h5>
+			      	{% if "logged out" in message%}
+			        	<h5 class="modal-title text-center w-100" id="AlertModalLabel">Logged Out</h5>
+			        {% else %}
+			        	<h5 class="modal-title text-center w-100" id="AlertModalLabel">Info</h5>
+			        {% endif %}
 			      </div>
 			      <div class="modal-body">
-			        	{{message}}
+			        	<span id="modalmsg">{{message}}</span>
 			      </div>
 			    </div>
 			  </div>

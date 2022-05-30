@@ -9,11 +9,13 @@
 	padding-right: 1%;
 	text-align: center;
 	font-size: 30px;
+	margin-left: -1%;
 }
 
 #others, #loginform{
 	text-align: center;
 	font-size: 30px;
+	margin-left: -2%;
 }
 
 #credentials{
@@ -66,19 +68,15 @@ input[type=button], input[type=submit]{
 	font-size: 15px;
 }
 
-#sign_in_desc{
+#sign_in_desc, #forgotpw a{
 	color: white;
 	font-size: 14px;
 	margin-top: -1%;
 }
 
-#lgin{
+#lgin, #sgin, #glgin{
 	background-color: #a89932;
 	color: white;
-}
-
-#sgin{
-	color:#a89932;
 }
 
 span{
@@ -86,6 +84,15 @@ span{
 }
 
 #modalmsg{
-	font-size: 18px;
+	font-size: 15px;
 	color: black;
+}
+
+.modal-header{
+	background-color: #7f6404;
+}
+
+.modal-title{
+	font-size: 24px;
+	color: white;
 }

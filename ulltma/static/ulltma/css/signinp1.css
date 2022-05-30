@@ -1,14 +1,16 @@
 .main{
 	margin-top: 15%;
+	margin-left: -1%;
 }
 
 .slots{
-	margin-top: -5%;
-	padding-left: 10%;
+	margin-top: -10%;
+	padding-left: -3%;
 }
 
-input[type=text], input[type=password]{
-	width: 60%;
+input[type=text], input[type=password], .formbox{
+	width: 40%;
+	border-radius: 10px;
 }
 
 span{
@@ -25,11 +27,22 @@ span{
 }
 
 input[type=submit]{
-	width: 90%;
+	width: 20%;
 	align-self: center;
+	border-top: 40px;
 	padding: 5px;
 	border-radius: 15px;
 	font-size: 20px;
 	font-weight: bold;
 
+}
+
+#logobrand{
+	margin-bottom: 2%;
+	margin-left: -2%;
+}
+
+#logobrand img{
+	width: 7em;
+	height: 7em;
 }

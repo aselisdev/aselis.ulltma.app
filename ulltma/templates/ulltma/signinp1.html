@@ -1,4 +1,4 @@
-{% extends "ulltma/layout.html" %}
+{% extends "ulltma/homestyle.html" %}
 
 {% load static %}
 
@@ -6,17 +6,15 @@
 
 <link rel="stylesheet" type="text/css" media="screen and (min-width:900px)" href="{% static 'ulltma/css/signinp1.css' %}">
 <link rel="stylesheet" type="text/css" media="screen and (max-width:900px)" href="{% static 'ulltma/css/signinp1-mobile.css' %}">
-
+	<div class="text-center" id="logobrand">
+		<img src="{%static 'ulltma/images/ulltmalogo.png'%}">
+	</div>
 	<div class="container-fluid main">
 		<form action="{% url 'signin' %}" method="POST">
 			{% csrf_token %}
-			<div class="row">
-				<div class = "col-sm-5 col-md-5 col-lg-5 col-xl-5 slots">
-					<h3> Personal Info </h3>
-
-					{%if message%}
-						<div><p>{{message}}</p></div>
-					{%endif%}
+			<div class="text-center">
+				<div class = "slots">
+					<h3> SIGN-UP INFO </h3>
 
 					<span> First Name </span><br>
 					{{form.firstname}} <br><br>
@@ -27,6 +25,9 @@
 					<span> Email </span><br>
 					{{form.email}} <br><br>
 
+					<span> Reenter Email</span><br>
+					{{form.emailconfirm}} <br><br>
+
 					<span> Password </span><br>
 					{{form.pword}} <br><br>
 
@@ -34,19 +35,25 @@
 					{{form.pconfirm}} <br><br>
 				</div>
 
-				<div class = "col-sm-5 col-md-5 col-lg-5 col-xl-5 confirm">
-					<h3 id="bigscreen"> Fill in the necessary details on the left. Once you're done, click below to find out your Learning Style! </h3>
-
-					<h3 id="smallscreen"> Fill in the necessary details above. Once you're done, click below to find out your Learning Style! </h3>
-
-					<br> <br>
-
-					<div class="text-center">
-						<input type="submit" value="Start Learning Test">
-					</div>
-				</div>
+				<input type="submit" value="Complete Sign-up">
 			</div>
 		</form>
+		{%if message%}
+			<div class="modal" id="alert" tabindex="-1" aria-labelledby="AlertModalLabel" aria-hidden="true" data-auto-open>
+				<div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="AlertModalLabel">Info</h5>
+				      </div>
+				      <div class="modal-body">
+				        	{{message}}
+				      </div>
+				    </div>
+				</div>
+			</div>
+		{% endif %}
+		
+		<script type="text/javascript" src="{%static 'ulltma/js/homepage.js'%}"></script>
 	</div>
 
 {% endblock %}

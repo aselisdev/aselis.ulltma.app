@@ -48,6 +48,7 @@ p{
 
 .radios li{
 	display: inline-block;
+	transform: scale(2);
 }
 
 
@@ -61,7 +62,7 @@ input[type=button], button{
 	padding-left: 10%;
 	padding-right: 10%;
 	border-radius: 50px;
-	color: #826e17;
+	color: #7f6404;
 	font-weight: bold;
 	font-size: 17.5px;
 	font-variant-caps: all-small-caps;
@@ -87,7 +88,7 @@ td {
 }
 
 #next, #previous{
-	background-color: #f0bdfc;
+	background-color: #7f6404;
 	color: white;
 }
 

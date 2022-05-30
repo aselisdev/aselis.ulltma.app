@@ -7,8 +7,9 @@ from django.contrib.auth.models import User
 from .models import *
 from django import forms
 from django.db import IntegrityError
+from django.utils.datastructures import MultiValueDictKeyError
 
-# from ulltma.aifuncs import clean_string, correctspelling 
+from ulltma.aifuncs import clean_string, correctspelling 
 from ulltma.ulltmaforms import *
 
 import random
@@ -24,6 +25,9 @@ from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from ulltma.tokens import account_activation_token
+
+from django.core.mail import EmailMessage, get_connection
+from email.mime.image import MIMEImage
 
 auditorydesc = ['Learn through listening.', 'Like to read aloud.', 'Often like to talk to themselves or create musical jingles to learn new material',
 	'Likes to have music when they study.', 'Remember by talking out loud.', 'Like to have things explained to them orally rather than through written instructions', 
@@ -51,16 +55,16 @@ readingdesc = ['Prefers information displayed as words.', 'Emphasizes text-based
 class UploadForm(forms.ModelForm):
 	class Meta:
 		model = ProfilePicture
-		fields = ('pfp',)
+		fields = ('pfp', 'default_preference')
 
 #helperfunca
 def skillQueryResults(keywords):
-	ret = BaseSkill.objects.filter(skill__icontains=keywords[0])
+	ret = BaseSkill.objects.filter(description__icontains=keywords[0])
 
 	if len(keywords) > 1:
 		i = 1
 		while i < len(keywords):
-			ret = ret & BaseSkill.objects.filter(skill__icontains=keywords[i])
+			ret = ret & BaseSkill.objects.filter(description__icontains=keywords[i])
 			i += 1
 
 	return ret
@@ -81,12 +85,22 @@ def login_view(request):
 		user = authenticate(request, username=userinput, password=password)
 		if user is not None:
 			login(request, user)
-
 			profile = Profile.objects.get(user=user)
+			"""
 			subject = 'Login Notification'
 			message = f"You've logged in to ULLTMA on {datetime.date.today()}."
-			user.email_user(subject, message)
 
+			conn = get_connection(
+					host='webmail.aselis.com',
+					port=587,
+					username='donotreply@aselis.com',
+					password='Aselisulltma!337Stitch',
+					use_tls=True)
+
+			msg = EmailMessage(subject, message, 'donotreply@aselis.com', [user.email])
+			msg.send()
+			"""
+			
 			if profile.first_time_taken_modality_test:
 				return HttpResponseRedirect(reverse("dashboard"))
 			else:
@@ -97,7 +111,14 @@ def login_view(request):
 				})
 	return render(request, "ulltma/content/home.html")
 
+def guest_login_view(request):
+	user = User.objects.get(username="guest")
+	login(request, user)
+	return HttpResponseRedirect(reverse("dashboard"))
+
 def logout_view(request):
+	if request.user.username == "guest":
+		UserReports.objects.filter(user=request.user).delete()
 	logout(request)
 	return render(request, "ulltma/content/home.html", {
 		"message" : "Thank you for using ULLTMA. You have now logged out."
@@ -111,6 +132,7 @@ def signin(request):
 			firstname = form.cleaned_data['firstname']
 			lastname = form.cleaned_data['lastname']
 			email = form.cleaned_data['email']
+			econfirm = form.cleaned_data['emailconfirm']
 			password = form.cleaned_data['pword']
 			pconfirm = form.cleaned_data['pconfirm']
 			user = authenticate(request, username=email, password=password)
@@ -119,6 +141,10 @@ def signin(request):
 				return render(request, "ulltma/signinp1.html", {
 		 			"form" : form, "message" : "User exists."
 		 			})
+			elif email != econfirm:
+				return render(request, "ulltma/signinp1.html", {
+					"form" : form, "message" : "Email Addresses do not match. Please reenter again."
+					})
 			else:
 				if len(password) < 8:
 					return render(request, "ulltma/signinp1.html", {
@@ -151,21 +177,37 @@ def signin(request):
 							'token' : account_activation_token.make_token(user)
 							})
 
-						user.email_user(subject, message)
+						fp = open("ulltma/static/ulltma/images/Trademark.png", 'rb')
+						logo = MIMEImage(fp.read())
+						fp.close()
 
-						return render(request, "ulltma/signinp1.html", {
-							"form" : form, "message" : "Please confirm email to continue"
-							})
+						conn = get_connection(
+						host='webmail.aselis.com',
+						port=587,
+						username='donotreply@aselis.com',
+						password='Aselisulltma!337Stitch',
+						use_tls=True)
+
+						msg = EmailMessage(subject, message, 'donotreply@aselis.com', [user.email])
+						msg.content_subtype = "html"
+						logo.add_header('Content-ID', '<image>')
+						msg.attach(logo)
+						msg.send()
+
+						return HttpResponseRedirect(reverse("signinclose"))
 					except IntegrityError:
 
 						return render(request, "ulltma/signinp1.html", {
-							"form" : form, "message" : "User exists --- for debugging purposes"
+							"form" : form, "message" : "User exists"
 							})
             		
 	else:
 		form = SignInForm()
 
 	return render(request,"ulltma/signinp1.html", {"form" : form})
+
+def signinclose(request):
+	return render(request, "ulltma/signinclose.html")
 
 def signinotp(request):
 	user_otp = UserOTP.objects.filter(user = request.user)
@@ -187,13 +229,23 @@ def ltprep(request):
 		userls.readingpercent = 0
 		userls.kinestheticpercent = 0
 		userls.save()
+
+	setver = random.randint(1,3)
+
 	return render(request,"ulltma/ltprep.html", {
-		"firstname":firstname
+		"firstname":firstname, "setver": setver
 		})
 
-def ltestprop(request):
+def ltestprop(request, setver):
+	print(f'Set {setver} selected before answering')
 
-	assess = LearningAssessment.objects.all()
+
+	if setver == 1:
+		assess = LearningAssessment.objects.filter(scenarionum__in=[5,6,8,14,15,18,20])
+	elif setver == 2:
+		assess = LearningAssessment.objects.filter(scenarionum__in=[1,3,9,10,12,16,19])
+	else:
+		assess = LearningAssessment.objects.filter(scenarionum__in=[2,4,7,11,13,14,17])
 	assessbed = []
 
 	visualbed = [v["visualquestion"] for v in list(assess.values("visualquestion"))]
@@ -219,14 +271,14 @@ def ltestprop(request):
 	answerlist = []
 
 	if request.method == "POST":
+		print(f'Set {setver} selected after answering')
 		a = 0
-		while a < 4 * assess.count():
+		while a <= 4 * assess.count() - 1:
 			answerlist.append(request.POST["freq_" + str(a)])
 			a += 1
 
 		b = 0
 		while b < 4 * assess.count():
-			print(f"{currbed[b]}: {answerlist[b]}")
 			if currbed[b] in visualbed and answerlist[b] == "often":
 				visualscore += 3
 				total += 3
@@ -272,7 +324,7 @@ def ltestprop(request):
 		userls.save()
 		return HttpResponseRedirect(reverse("learnstylereport"))
 	return render(request,"ulltma/qbed3.html", {
-		"assess":assess, "assessbed":assessbed
+		"assess":assess, "assessbed":assessbed, "assesscount":assess.count(), "assessdiv": 100 / assess.count(), "setver": setver
 		})
 
 def learnstylereport(request):
@@ -374,21 +426,25 @@ def skillsearch(request):
 
 def reportsearch(request):
 	userreports = UserReports.objects.filter(user=request.user)
+	lstyle = LearningStyle.objects.filter(user=request.user).values()
+	datetaken = lstyle[0]['datetaken']
 	if request.method=="POST":
 		searchquery = request.POST["searchtext"]
 		searchreports =  UserReports.objects.filter(user=request.user, skill__icontains=searchquery)
 		return render(request, "ulltma/reports.html", {
-			"reports" : searchreports
+			"reports" : searchreports, "datetaken" : datetaken
 			})
 
 	return render(request, "ulltma/reports.html", {
-		"reports" : userreports
+		"reports" : userreports, "datetaken" : datetaken
 		})
 
 def changepassword(request):
 	if request.method == "POST":
 		form = ChangePWordForm(request.POST)
+		u = request.user
 		if form.is_valid():
+			pcurrent = form.cleaned_data['pcurrent']
 			password = form.cleaned_data['pword']
 			pconfirm = form.cleaned_data['pconfirm']
 			if len(password) < 8:
@@ -404,7 +460,6 @@ def changepassword(request):
 					"form" : form
 					})
 			else:
-				u = request.user
 				u.set_password(password)
 				u.save()
 				login(request, u)
@@ -412,6 +467,9 @@ def changepassword(request):
 	else:
 		form = ChangePWordForm()
 	return render(request, "ulltma/changepw.html", {"form":form})
+
+def changepasswordclose(request):
+	return render(request, "ulltma/changepwclose.html")
 
 def changepasswordlogin(request):
 	if request.method == "POST":
@@ -531,7 +589,6 @@ def ltools(request, keyword):
 
 	if request.method == "GET":
 		url = request.GET.get('link')
-		print(request.user)
 		tool = tools.filter( url=url)
 		md = list(tool.values('modality'))
 		if len(md) > 0:
@@ -539,8 +596,18 @@ def ltools(request, keyword):
 			ltool.clicked += 1
 			ltool.save()
 
-
 	return render(request, "ulltma/ltools.html", {"keyword" : keyword, "tools":modtools, "others":others, "style":style})
+
+def viewltool(request, keyword, link):
+	if 'youtube.com' in link:
+		ytlink = link.replace('watch?v=','embed/')
+		response = render(request, "ulltma/viewltool.html", {"link": ytlink, "keyword": keyword})
+	elif 'illustrativemathematics' in link:
+		imlink = link
+		response = render(request, "ulltma/viewltool.html", {"link": imlink, "keyword": keyword})
+	else:
+		response = render(request, "ulltma/viewltool.html", {"link": link, "keyword": keyword})
+	return response
 
 def posttest(request, keyword):
 	skill = BaseSkill.objects.filter(keyword=keyword).first()
@@ -604,6 +671,8 @@ def results(request, keyword):
 	pretestscores = [userrep.q1pretestscore, userrep.q2pretestscore, userrep.q3pretestscore]
 	posttestscores = [userrep.q1posttestscore, userrep.q2posttestscore, userrep.q3posttestscore]
 
+	agg_score = pretestscores + posttestscores
+	max_score = max(agg_score)
 
 	x = np.arange(len(labels))
 	width = 0.35
@@ -612,9 +681,13 @@ def results(request, keyword):
 	rects1 = ax.barh(x - width/2, pretestscores, width, label='Pre-test', color="#800080")
 	rects2 = ax.barh(x + width/2, posttestscores, width, label='Post-test', color="#E9D3FF")
 
+	ax.set_xbound(lower=0.0)
+	if max_score != 0:
+		ax.set_xticks(np.arange(0, max_score + 1, 1))
+	else:
+		ax.set_xticks(np.arange(0, 4, 1))
 	ax.set_yticks(x)
-	ax.set_yticklabels(labels)
-	ax.invert_yaxis()
+	ax.set_yticklabels(labels, rotation=45)
 	ax.legend()
 
 	buf = io.BytesIO()
@@ -669,6 +742,9 @@ def learnresult(request, skillname):
 	pretestscores = [userrep.q1pretestscore, userrep.q2pretestscore, userrep.q3pretestscore]
 	posttestscores = [userrep.q1posttestscore, userrep.q2posttestscore, userrep.q3posttestscore]
 
+	agg_score = pretestscores + posttestscores
+	max_score = max(agg_score)
+
 	x = np.arange(len(labels))
 	width = 0.35
 
@@ -676,8 +752,13 @@ def learnresult(request, skillname):
 	rects1 = ax.barh(x - width/2, pretestscores, width, label='Pre-test', color="#d2a8e3")
 	rects2 = ax.barh(x + width/2, posttestscores, width, label='Post-test', color="#563463")
 
+	ax.set_xbound(lower=0.0)
+	if max_score != 0:
+		ax.set_xticks(np.arange(0, max_score + 1, 1))
+	else:
+		ax.set_xticks(np.arange(0, 4, 1))
 	ax.set_yticks(x)
-	ax.set_yticklabels(labels)
+	ax.set_yticklabels(labels, rotation=45)
 	ax.invert_yaxis()
 	ax.legend()
 
@@ -714,9 +795,12 @@ def pfpchange(request):
 	userpfp = ProfilePicture.objects.get(user=request.user)
 	if request.method == "POST":
 		form = UploadForm(request.POST, request.FILES)
-		print(form.is_valid())
 		if form.is_valid():
-			userpfp.pfp = form.cleaned_data['pfp']
+			try:
+				file = request.FILES['pfp']
+				userpfp.pfp = form.cleaned_data['pfp']
+			except MultiValueDictKeyError:
+				userpfp.pfp = f"ulltma/pfp/{form.cleaned_data['default_preference']}.png"
 			userpfp.save()
 			message = "PFP Changed successfully"
 			return render(request, "ulltma/pfpchange.html", {
@@ -743,7 +827,36 @@ def reportissue(request):
 		sd = request.POST['shortdesc']
 		ld = request.POST['longdesc']
 		issue = AppIssue.objects.create(shortdesc=sd, longdesc=ld, issuedate=datetime.date.today())
+		user = request.user
+		subject = sd
+		message = render_to_string('ulltma/report_issue_email.html', {
+			'user' : user,
+			'date' : datetime.date.today(),
+			'description' : ld
+			})
+
+		fp = open("ulltma/static/ulltma/images/Trademark.png", 'rb')
+		logo = MIMEImage(fp.read())
+		fp.close()
+
+		conn = get_connection(
+			host='webmail.aselis.com',
+			port=587,
+			username='support@aselis.com',
+			password='Aselisulltma!337Stitch',
+			use_tls=True)
+
+		msg = EmailMessage(subject, message, 'support@aselis.com', [user.email, 'support@aselis.com'], connection=conn)
+		msg.content_subtype = "html"
+		logo.add_header('Content-ID', '<image>')
+		msg.attach(logo)
+		msg.send()
+		return HttpResponseRedirect(reverse("reportissueclose"))
+
 	return render(request, "ulltma/reportissue.html")
+
+def reportissueclose(request):
+	return render(request, "ulltma/reportissueclose.html")
 
 #class for view.
 class ActivateAccount(View):
@@ -774,7 +887,9 @@ class ActivateAccount(View):
             	ls.readingpercent = 0
             	ls.kinestheticpercent = 0
             	ls.save()
+
+            setver = random.randint(1,3)
             login(request, user)
-            return render(request, "ulltma/ltprep.html", {"message":messages, "firstname" : user.first_name})
+            return render(request, "ulltma/ltprep.html", {"message":messages, "firstname" : user.first_name, "setver":setver})
         else:
             return render(request, "ulltma/content/home.html", {"message":"The confirmation link was invalid, possibly because it has already been used. Fortunately, your account has already ben created, so why not log in and take the modality test?"})

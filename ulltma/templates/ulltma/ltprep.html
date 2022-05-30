@@ -1,4 +1,4 @@
-{% extends "ulltma/layout.html" %}
+{% extends "ulltma/homestyle.html" %}
 
 {%load static%}
 
@@ -16,10 +16,8 @@
 		<h2>{{firstname}}, welcome to ULLTMA!</h2> 
 		<h2>To start using ULLTMA, we need to figure out your learning style.</h2>
 		<p>Please answer the following questions, and we'll let you know what types of learning tools are best for you!</p>
-		<br><br>
-
 		<div class="text-center">
-			<button id = "cont" class="btn-light no-border" onclick="window.location.href='{% url 'ltestprop' %}' "> CONTINUE </button>
+			<button id = "cont" class="btn-light no-border" onclick="window.location.href='{% url 'ltestprop' setver%}' "> CONTINUE </button>
 		</div>
 		
 	</div>
